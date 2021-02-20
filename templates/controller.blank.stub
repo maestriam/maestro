@@ -1,0 +1,13 @@
+<?php
+
+namespace {{namespace}}\Http\Controllers;
+
+use Illuminate\Routing\Controller as BaseController;
+
+class {{classname}}Controller extends BaseController
+{
+    public function index()
+    {
+        
+    }    
+}
