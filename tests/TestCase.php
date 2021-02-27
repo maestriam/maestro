@@ -2,7 +2,6 @@
 
 namespace Maestriam\Maestro\Tests;
 
-use Maestriam\Forge\Entities\Forge;
 use Maestriam\Forge\Providers\ForgeServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTesCase;
 use Maestriam\Maestro\Providers\MaestroServiceProvider;
@@ -28,17 +27,42 @@ class TestCase extends BaseTesCase
         ];
     }
 
-    protected function getConfig() : array
+    protected function getEnvironmentSetUp($app)
     {
-        return [
-            'tests' => [
-                'root_folder'     => 'sandbox\SandBox',
-                'template_folder' => 'templates',
-                'structure'       => [
+        $app['config']->set('Maestro:config', [
+            'author' => [
+                'name'  => 'Giuliano Sampaio',
+                'email' => 'giuguitar@gmail.com'
+            ]
+        ]);
+
+        $app['config']->set('Maestro:forge', [
+            'maestro' => [
+                'root_folder' => __DIR__ . '/../devnull',
+                'template_folder' => __DIR__ . '/../templates',
+                'structure' => [            
+                    'json.*'       => '.',
+                    'provider.*'   => 'Providers',            
+                    'route.*'      => 'Routes',
                     'controller.*' => 'Http/Controllers',
-                    'provider.*'   => 'Providers'
+                    'config'       => 'Config',
+                    'view.blank'   => 'Resources/views'
                 ]
             ]
-        ];
+        ]);
+    }
+
+    /**
+     * Testa se o conteúdo do template foi interpretado corretamente
+     *
+     * @param mixed $file
+     * @return void
+     */
+    protected function assertContentHasParsed($file) : void
+    {
+        $content = file_get_contents($file->path);
+
+        $this->assertStringNotContainsString("{{", $content);
+        $this->assertStringNotContainsString("}}", $content);  
     }
 }

@@ -2,18 +2,13 @@
 
 namespace Maestriam\Maestro\Entities;
 
-use Maestriam\Forge\Entities\File;
 use Maestriam\Forge\Entities\Forge; 
 use Illuminate\Support\Facades\Config;
+use Maestriam\Maestro\Contracts\Source as SourceContract;
 use Maestriam\Maestro\Exceptions\InvalidModuleNameException;
 
-abstract class Source implements Source
+abstract class Source implements SourceContract
 {
-    /**
-     * Define o nome do arquivo que será manipulado
-     */
-    protected string $filename;
-
     /**
      * Nome do template
      */
@@ -25,14 +20,29 @@ abstract class Source implements Source
     protected string $module;
 
     /**
+     * Nome do vendor
+     */
+    protected string $vendor = 'maestro';
+
+    /**
      * Chave de configuração utilizada para Maestriam/Forge
      */
     protected string $setupKey = 'maestro'; 
 
     /**
-     * Instância para criação de arquivos
+     * Retorna todos os valores que serão substituídos na 
+     * hora da criação do arquivo.
+     *
+     * @return array
      */
-    private static ?Forge $forgeInstance = null;
+    abstract protected function getArguments() : array;
+
+    /**
+     * Retorna o nome do arquivo que será criado
+     *
+     * @return string
+     */
+    abstract protected function getFilename() : string;
  
     /**
      * Define o nome do módulo do arquivo
@@ -51,6 +61,18 @@ abstract class Source implements Source
     }
 
     /**
+     * Executa a criação do controller em um determinado módulo
+     *
+     * @return void
+     */
+    public function create()
+    {
+        $args = $this->getArguments();
+
+        return $this->createFile($args);
+    }
+
+    /**
      * Define o nome do template que será criado
      *
      * @param string $template
@@ -59,6 +81,7 @@ abstract class Source implements Source
     protected function template(string $template) : Source
     {
         $this->template = $template;
+        
         return $this;
     }
 
@@ -80,8 +103,7 @@ abstract class Source implements Source
      */
     protected function getConfig() : array
     {
-        $config = Config::get('Maestro:forge');
-        
+        $config = Config::get('Maestro:forge');        
         $config = $this->fixRootFolder($config);
 
         return $config;
@@ -111,16 +133,9 @@ abstract class Source implements Source
      */
     private function getForge() : Forge
     {
-        if (self::$forgeInstance == null) {
+        $config = $this->getConfig();
 
-            $config = $this->getConfig();
-            $key    = $this->setupKey;
-            $tpl    = $this->template;
-
-            self::$forgeInstance = new Forge($key, $tpl, $config);
-        }
-
-        return self::$forgeInstance;
+        return new Forge($this->setupKey, $this->template, $config);
     }
 
     /**
@@ -132,7 +147,8 @@ abstract class Source implements Source
     protected function createFile(array $args)
     {
         $forge = $this->getForge();
+        $name  = $this->getFilename();
 
-        return $forge->create($this->filename, $args);
+        return $forge->create($name, $args);
     }
 }

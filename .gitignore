@@ -1,5 +1,5 @@
 build/
 vendor/
-sandbox/
+devnull/
 .phpunit.result.cache
 composer.lock

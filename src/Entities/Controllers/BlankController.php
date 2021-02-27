@@ -4,13 +4,8 @@ namespace Maestriam\Maestro\Entities\Controllers;
 
 use Maestriam\Maestro\Exceptions\InvalidSourceFilenameException;
 
-class BlankController extends Controller 
+class BlankController extends BaseController 
 {
-    /**
-     * Nome da classe do controller
-     */
-    protected string $name;
-
     /**
      * Nome do template
      */
@@ -22,13 +17,13 @@ class BlankController extends Controller
      * @param string $name
      * @return Controller
      */
-    public function name(string $name) : Controller
+    public function name(string $name) : self
     {
         if (! $this->isValidName($name)) {
             throw new InvalidSourceFilenameException($name);            
         }
 
-        return $this->setName($name)->setFilename($name);
+        return $this->setName($name);
     }
 
     /**

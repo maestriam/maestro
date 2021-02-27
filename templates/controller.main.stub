@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class {{uppername}}Controller extends Controller
+class {{classname}}Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class {{uppername}}Controller extends Controller
      */
     public function index()
     {
-        return view('{{lowename}}::index');
+        return view('{{modulename}}::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class {{uppername}}Controller extends Controller
      */
     public function create()
     {
-        return view('{{lowename}}::create');
+        return view('{{modulename}}::create');
     }
 
     /**
@@ -43,7 +43,7 @@ class {{uppername}}Controller extends Controller
      */
     public function show($id)
     {
-        return view('{{lowename}}::show');
+        return view('{{modulename}}::show');
     }
 
     /**
@@ -53,7 +53,7 @@ class {{uppername}}Controller extends Controller
      */
     public function edit($id)
     {
-        return view('{{lowename}}::edit');
+        return view('{{modulename}}::edit');
     }
 
     /**

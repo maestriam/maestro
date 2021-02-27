@@ -1,0 +1,13 @@
+{
+    "name": "{{name}}",
+    "alias": "{{alias}}",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "{{namespace}}Providers\\{{name}}ServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

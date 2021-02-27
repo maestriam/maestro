@@ -4,7 +4,8 @@
     "type": "package",
     "license": "MIT",
     "require": {
-        "maestriam/forge": "dev-master"
+        "maestriam/forge": "dev-master",
+        "nwidart/laravel-modules": "^8.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -32,5 +33,11 @@
             "Maestriam\\Maestro\\Providers\\MaestroServiceProvider"
           ]
         }
-    }
+    },
+    "repositories": [
+        {
+          "type": "path",
+          "url": "../forge"
+        }
+    ]
 }

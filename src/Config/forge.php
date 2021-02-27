@@ -28,7 +28,7 @@ return [
         |
         */
 
-        'root_folder' => __DIR__ . '/../../sandbox',
+        'root_folder' => base_path('maestro'),
         
         /*
         |--------------------------------------------------------------------------
@@ -64,8 +64,13 @@ return [
         |
         */
 
-        'structure' => [
-            'controller.*' => 'Http/Controllers'
+        'structure' => [            
+            'json.*'       => '.',
+            'provider.*'   => 'Providers',            
+            'route.*'      => 'Routes',
+            'controller.*' => 'Http/Controllers',
+            'config'       => 'Config',
+            'view.*'       => 'Resources/views',
         ]
     ]
 ];

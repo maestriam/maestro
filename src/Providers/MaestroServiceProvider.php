@@ -2,14 +2,48 @@
 
 namespace Maestriam\Maestro\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-class MaestroServiceProvider extends ServiceProvider
+use Maestriam\Maestro\Console\CreateControllerCommand;
+use Maestriam\Maestro\Console\CreateModuleCommand;
+use Maestriam\Maestro\Console\CreateServiceProviderCommand;
+use Maestriam\Maestro\Entities\Maestro;
+use Nwidart\Modules\LaravelModulesServiceProvider;
+class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
     public function boot()
     {
+        parent::boot();
         $this->registerConfs();
-    }    
+        $this->registerCommands();
+    }
+
+    public function register()
+    {
+        parent::register();
+        $this->registerFacade();        
+    }
+
+    protected function registerNamespaces()
+    {
+        $config = __DIR__ . '/../config/modules.php';
+
+        $this->mergeConfigFrom($config, 'modules');
+    }
+
+    protected function registerFacade()
+    {
+        $this->app->bind('maestro',function() {
+            return new Maestro($this->app);
+        });          
+    }
+
+    private function registerCommands()
+    {
+        $this->commands([
+            CreateControllerCommand::class,
+            CreateModuleCommand::class,
+            CreateServiceProviderCommand::class,
+        ]);
+    }
 
     /**
      * Registra as configurações do pacote
@@ -30,5 +64,5 @@ class MaestroServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($config,'Maestro:config');
 
         return $this;
-    }
+    } 
 }

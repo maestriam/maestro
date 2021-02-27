@@ -1,0 +1,23 @@
+{
+    "name": "maestro/{{name}}",
+    "description": "",
+    "authors": [
+        {
+            "name": "{{author}}",
+            "email": "{{email}}"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "{{namespace}}": ""
+        }
+    }
+}

@@ -7,21 +7,21 @@ use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CreateControllerCommand extends Command
+class CreateModuleCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:controller {module} {name}';
+    protected $signature = 'maestro:module {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new controller for a maestro module.';
+    protected $description = 'Create a new module.';
 
     /**
      * Create a new command instance.
@@ -40,15 +40,11 @@ class CreateControllerCommand extends Command
      */
     public function handle()
     {
-        $name   = $this->argument('name');
-        $module = $this->argument('module');
+        $name = $this->argument('name');
 
-        Maestro::module($module)
-               ->controller()
-               ->blank($name)
-               ->create();
+        Maestro::module($name)->create()->active();
 
-        $this->info('Controller created.');
+        $this->info('Module created.');
     }
 
     /**
@@ -59,8 +55,7 @@ class CreateControllerCommand extends Command
     protected function getArguments()
     {
         return [
-            ['module', InputArgument::REQUIRED, 'Module name.'],
-            ['name',   InputArgument::REQUIRED, 'Controller name.'],
+            ['name',   InputArgument::REQUIRED, 'Module name.'],
         ];
     }
 

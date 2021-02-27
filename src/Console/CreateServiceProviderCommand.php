@@ -7,21 +7,21 @@ use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CreateControllerCommand extends Command
+class CreateServiceProviderCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:controller {module} {name}';
+    protected $signature = 'maestro:provider {module} {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new controller for a maestro module.';
+    protected $description = 'Create a new service provider for a specific module.';
 
     /**
      * Create a new command instance.
@@ -44,11 +44,11 @@ class CreateControllerCommand extends Command
         $module = $this->argument('module');
 
         Maestro::module($module)
-               ->controller()
+               ->provider()
                ->blank($name)
                ->create();
 
-        $this->info('Controller created.');
+        $this->info('Service provider created.');
     }
 
     /**
@@ -60,7 +60,7 @@ class CreateControllerCommand extends Command
     {
         return [
             ['module', InputArgument::REQUIRED, 'Module name.'],
-            ['name',   InputArgument::REQUIRED, 'Controller name.'],
+            ['name',   InputArgument::REQUIRED, 'Service provider name.'],
         ];
     }
 
@@ -72,7 +72,7 @@ class CreateControllerCommand extends Command
     protected function getOptions()
     {
         return [
-            // ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+            
         ];
     }
 }
