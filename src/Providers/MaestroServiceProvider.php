@@ -5,6 +5,7 @@ namespace Maestriam\Maestro\Providers;
 use Maestriam\Maestro\Console\CreateControllerCommand;
 use Maestriam\Maestro\Console\CreateModuleCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
+use Maestriam\Maestro\Console\CreateViewCommand;
 use Maestriam\Maestro\Entities\Maestro;
 use Nwidart\Modules\LaravelModulesServiceProvider;
 class MaestroServiceProvider extends LaravelModulesServiceProvider
@@ -41,6 +42,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
         $this->commands([
             CreateControllerCommand::class,
             CreateModuleCommand::class,
+            CreateViewCommand::class,
             CreateServiceProviderCommand::class,
         ]);
     }
