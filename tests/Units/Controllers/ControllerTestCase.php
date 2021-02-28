@@ -22,7 +22,7 @@ abstract class ControllerTestCase extends TestCase
      * @param mixed $controller
      * @return void
      */
-    protected function assertControllerObject(mixed $controller)
+    protected function assertControllerObject($controller)
     {      
         $this->assertObjectHasAttribute('name', $controller);
         $this->assertObjectHasAttribute('module', $controller);
@@ -34,7 +34,7 @@ abstract class ControllerTestCase extends TestCase
      * @param mixed $file
      * @return void
      */
-    protected function assertControllerFile(mixed $file)
+    protected function assertControllerFile($file)
     {
         $this->assertFileExists($file->path);
     }

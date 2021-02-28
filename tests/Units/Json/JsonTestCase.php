@@ -22,7 +22,7 @@ abstract class JsonTestCase extends TestCase
      * @param mixed $composer
      * @return void
      */
-    protected function assertIsJsonObject(mixed $composer)
+    protected function assertIsJsonObject($composer)
     {              
         $this->assertObjectHasAttribute('module', $composer);
     }
@@ -33,7 +33,7 @@ abstract class JsonTestCase extends TestCase
      * @param mixed $file
      * @return void
      */
-    protected function assertIsJsonFile(mixed $file)
+    protected function assertIsJsonFile($file)
     {
         $this->assertFileExists($file->path);
         $this->assertStringEndsWith('.json', $file->path);
