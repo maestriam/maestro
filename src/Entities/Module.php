@@ -12,52 +12,30 @@ use Maestriam\Maestro\Concerns\ManagesControllers;
 use Maestriam\Maestro\Concerns\ManagesProviders;
 use Maestriam\Maestro\Concerns\ManagesResources;
 use Maestriam\Maestro\Concerns\ManagesRoutes;
-use Maestriam\Maestro\Entities\Config\ConfigFile;
+use Maestriam\Maestro\Contracts\ModuleInterface;
 
-class Module
-{
-    use HasModuleAttribute, 
-        ManagesControllers, 
-        ManagesConfigFile,
-        ManagesProviders, 
-        ManagesResources,
-        ActivesModule,
-        ManagesRoutes,
-        HandlesJsons;
+class Module implements ModuleInterface
+{    
+    /**
+     * Nome do módulo
+     */
+    private string $name;
+
+    /**
+     * Vendor do módulo
+     */
+    private string $vendor;
 
     /**
      * Instância de aplicação Laravel
      */
-    protected Container $app;
+    private Container $app;
 
-    /**
-     * Classe para operações gerais de módulo
-     *
-     * @param string $name
-     * @param \Illuminate\Container\Container $app
-     */
     public function __construct(string $name, Container $app)
     {
-        $this->setApp($app)->name($name);
-    }
-
-    /**
-     * Cria um novo modulo
-     *
-     * @return void
-     */
-    public function create() : self
-    {        
-        $this->moduleJson()->create();
-        $this->composerJson()->create();        
-        $this->controller()->main()->create();        
-        $this->provider()->main()->create();
-        $this->provider()->route()->create();
-        $this->route()->web()->create();
-        $this->configFile()->create();
-        $this->view()->blank('index')->create();
-
-        return $this;
+        $this->setVendor('Maestro')
+             ->setName($name)             
+             ->setApp($app);    
     }
 
     /**
@@ -66,36 +44,75 @@ class Module
      * @param string $name
      * @return Module
      */
-    public function name(string $name) : self
+    private function setName(string $name) : Module
     {
-        $this->moduleName = ucfirst($name);
-
+        $this->name = $name;
         return $this;
-    }       
-    
-    /**
-     * Muda o status do modulo para ativo
-     *
-     * @return void
-     */
-    public function activate()
-    {
-        $activator = new FileActivator($this->app);
-
-        $activator->setActiveByName($this->moduleName, true);
     }
 
+    /**
+     * Define o vendor do módulo
+     *
+     * @param Container $app
+     * @return Module
+     */
+    private function setVendor(string $vendor) : Module
+    {
+        $this->vendor = $vendor;
+        return $this;
+    }
+    
     /**
      * Define a instância da aplicação Laravel
      *
      * @param Container $app
-     * @return self
+     * @return Module
      */
-    private function setApp(Container $app) : self
+    private function setApp(Container $app) : Module
     {
         $this->app = $app;
-
         return $this;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function name() : string
+    {
+        return ucfirst($this->name);
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function lcname() : string
+    {
+        return strtolower($this->name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function vendor() : string
+    {
+        return ucfirst($this->vendor);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function namespace(bool $doubleBackSlash = false) : string
+    {
+        $pattern = ($doubleBackSlash) ? "%s\\\\%s" : "%s\\%s";
+
+        return sprintf($pattern, $this->vendor(), $this->name());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function create() : Module
+    {
+        return $this;
+    }
 }

@@ -2,153 +2,121 @@
 
 namespace Maestriam\Maestro\Entities;
 
-use Maestriam\Forge\Entities\Forge; 
-use Illuminate\Support\Facades\Config;
-use Maestriam\Maestro\Contracts\Source as SourceContract;
-use Maestriam\Maestro\Exceptions\InvalidModuleNameException;
+use Maestriam\Maestro\Contracts\SourceInterface;
 
-abstract class Source implements SourceContract
+abstract class Source implements SourceInterface
 {
+    /**
+     * Nome do arquivo
+     */
+    protected string $filename;
+
     /**
      * Nome do template
      */
-    protected string $template;
+    protected string $template;    
 
     /**
      * Módulo de destino do arquivo de código-fonte
      */
-    protected string $module;
+    protected Module $module;
 
     /**
-     * Nome do vendor
+     * Gabarito com as informações do template
      */
-    protected string $vendor = 'maestro';
+    protected array $placeholders;
 
     /**
-     * Chave de configuração utilizada para Maestriam/Forge
-     */
-    protected string $setupKey = 'maestro'; 
-
-    /**
-     * Retorna todos os valores que serão substituídos na 
-     * hora da criação do arquivo.
+     * Undocumented function
      *
-     * @return array
+     * @param Module $module
      */
-    abstract protected function getArguments() : array;
+    public function __construct(Module $module)
+    {
+        $this->setModule($module);
+    }
 
     /**
-     * Retorna o nome do arquivo que será criado
+     * Retorna a instância de criação de arquivos
      *
-     * @return string
+     * @return FileSystem
      */
-    abstract protected function getFilename() : string;
+    private function system() : FileSystem
+    {
+        return new FileSystem($this);
+    }
  
     /**
-     * Define o nome do módulo do arquivo
+     * Define o módulo que o código será inserido
      *
-     * @param string $module
-     * @return Source
-     */
-    public function module(string $module) : Source
+     * @param Module $module
+     * @return self
+     */  
+    public function setModule(Module $module) : self
     {
-        if (! $this->isValidName($module)) {
-            throw new InvalidModuleNameException($module);
-        }
-
-        $this->module = ucfirst($module);
+        $this->module = $module;
         return $this;
     }
 
     /**
-     * Executa a criação do controller em um determinado módulo
+     * {@inheritDoc}
+     */
+    public function module() : Module
+    {
+        return $this->module;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFilename(string $filename) : self
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filename() : string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPlaceholders(array $placeholders) : self
+    {
+        $this->placeholders = $placeholders;
+        return $this;
+    }
+
+    /**
+     * Define o nome do template que é utilizado como base
      *
-     * @return void
+     * @param string $template
+     * @return self
+     */
+    public function setTemplate(string $template) : self
+    {
+        $this->template = $template;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function template() : string
+    {
+        return $this->template;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function create()
     {
-        $args = $this->getArguments();
-
-        return $this->createFile($args);
-    }
-
-    /**
-     * Define o nome do template que será criado
-     *
-     * @param string $template
-     * @return Source
-     */
-    protected function template(string $template) : Source
-    {
-        $this->template = $template;
-        
-        return $this;
-    }
-
-    /**
-     * Verifica se é um nome válido para criação de modulos/arquivos
-     *
-     * @param string $name
-     * @return boolean
-     */
-    protected function isValidName(string $name) : bool
-    {
-        return (! strlen(trim($name))) ? false : true;
-    }
-
-    /**
-     * Retorna as informa
-     *
-     * @return void
-     */
-    protected function getConfig() : array
-    {
-        $config = Config::get('Maestro:forge');        
-        $config = $this->fixRootFolder($config);
-
-        return $config;
-    }
-
-    /**
-     * Ajusta o caminho de destino para o módulo definido
-     *
-     * @todo Arrumar uma solução no Maestriam/Forge para resolver isso
-     * @param array $config
-     * @return array
-     */
-    private function fixRootFolder(array $config) : array 
-    {
-        $setup = $config[$this->setupKey];
-        $root  = $setup['root_folder'] . DS . $this->module;
-
-        $setup['root_folder'] = $root;        
-        
-        return [$this->setupKey => $setup];
-    }
-
-    /**
-     * Retorna a instância do Maestriam/Forge
-     *
-     * @return Forge
-     */
-    private function getForge() : Forge
-    {
-        $config = $this->getConfig();
-
-        return new Forge($this->setupKey, $this->template, $config);
-    }
-
-    /**
-     * Executa a criação do arquivo no módulo especificado
-     *
-     * @param array $args
-     * @return void
-     */
-    protected function createFile(array $args)
-    {
-        $forge = $this->getForge();
-        $name  = $this->getFilename();
-
-        return $forge->create($name, $args);
+        return $this->system()->create();
     }
 }

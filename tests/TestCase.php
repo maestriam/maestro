@@ -3,6 +3,7 @@
 namespace Maestriam\Maestro\Tests;
 
 use Maestriam\Forge\Providers\ForgeServiceProvider;
+use Maestriam\Maestro\Entities\Module;
 use Orchestra\Testbench\TestCase as BaseTesCase;
 use Maestriam\Maestro\Providers\MaestroServiceProvider;
 
@@ -50,6 +51,17 @@ class TestCase extends BaseTesCase
                 ]
             ]
         ]);
+    }
+
+    /**
+     * Retorna a instância de módulo
+     *
+     * @param string $name
+     * @return Module
+     */
+    protected function getModuleInstance(string $name = 'Foo') : Module
+    {
+        return new Module($name, $this->app);
     }
 
     /**
