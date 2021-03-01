@@ -9,9 +9,8 @@ class RouteContainer extends BaseContainer
 {
     public function web() : WebRoute
     {  
-        $web    = new WebRoute();
-        $module = $this->getModuleName();
+        $module = $this->module();
 
-        return $web->module($module);
+        return new WebRoute($module);
     }
 }

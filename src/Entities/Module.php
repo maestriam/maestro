@@ -3,19 +3,13 @@
 namespace Maestriam\Maestro\Entities;
 
 use Illuminate\Container\Container;
-use Maestriam\Maestro\Concerns\ActivesModule;
-use Nwidart\Modules\Activators\FileActivator;
-use Maestriam\Maestro\Concerns\HandlesJsons;
-use Maestriam\Maestro\Concerns\HasModuleAttribute;
-use Maestriam\Maestro\Concerns\ManagesConfigFile;
-use Maestriam\Maestro\Concerns\ManagesControllers;
-use Maestriam\Maestro\Concerns\ManagesProviders;
-use Maestriam\Maestro\Concerns\ManagesResources;
-use Maestriam\Maestro\Concerns\ManagesRoutes;
+use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
 
 class Module implements ModuleInterface
 {    
+    use ManagesContainers;
+
     /**
      * Nome do módulo
      */

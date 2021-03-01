@@ -4,9 +4,10 @@ namespace Maestriam\Maestro\Entities\Containers;
 
 use Maestriam\Maestro\Entities\Jsons\ComposerJson;
 use Maestriam\Maestro\Entities\Jsons\ModuleJson;
+use Maestriam\Maestro\Entities\Module;
 
 class JsonFilesContainer extends BaseContainer
-{
+{      
     /**
      * Retorna a instância para a manipulação do module.json
      *
@@ -14,9 +15,9 @@ class JsonFilesContainer extends BaseContainer
      */
     public function moduleFile() : ModuleJson
     {
-        $json = new ModuleJson();
-        
-        return $json->module($this->moduleName);
+        $module = $this->module();
+
+        return new ModuleJson($module);    
     }
     
     /**
@@ -26,8 +27,8 @@ class JsonFilesContainer extends BaseContainer
      */
     public function composerFile() : ComposerJson
     {
-        $json = new ComposerJson();
-        
-        return $json->module($this->moduleName);
+        $module = $this->module();
+
+        return new ComposerJson($module);
     }
 }

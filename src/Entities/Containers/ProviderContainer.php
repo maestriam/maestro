@@ -16,10 +16,9 @@ class ProviderContainer extends BaseContainer
      */
     public function main() : MainServiceProvider
     {
-        $provider = new MainServiceProvider();        
-        $module   = $this->getModuleName();
+        $module = $this->module();
 
-        return $provider->module($module);
+        return new MainServiceProvider($module);  
     }    
 
     /**
@@ -30,10 +29,9 @@ class ProviderContainer extends BaseContainer
      */
     public function blank(string $name) : BlankServiceProvider
     {
-        $provider = new BlankServiceProvider();
-        $module   = $this->getModuleName();
-        
-        return $provider->name($name)->module($module);
+        $module = $this->module();
+
+        return new BlankServiceProvider($module);
     }
     
     /**
@@ -43,10 +41,9 @@ class ProviderContainer extends BaseContainer
      */
     public function route() : RouteServiceProvider
     {
-        $provider = new  RouteServiceProvider();
-        $module   = $this->getModuleName();
+        $module = $this->module();
 
-        return $provider->module($module);
+        return new  RouteServiceProvider($module);
     }
 
 }

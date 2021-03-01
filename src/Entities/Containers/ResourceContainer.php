@@ -9,9 +9,10 @@ class ResourceContainer extends BaseContainer
 {
     public function blank(string $name) : BlankView
     {  
-        $view = new BlankView();
-        $module = $this->getModuleName();
+        $module = $this->module();
 
-        return $view->name($name)->module($module);
+        $view = new BlankView($module); 
+
+        return $view->setName($name);
     }
 }
