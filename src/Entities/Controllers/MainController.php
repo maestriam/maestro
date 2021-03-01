@@ -3,48 +3,44 @@
 namespace Maestriam\Maestro\Entities\Controllers;
 
 use Maestriam\Maestro\Entities\Controllers\BaseController;
+use Maestriam\Maestro\Entities\Module;
+
 class MainController extends BaseController
 {
     /**
-     * Nome do template
-     */
-    protected string $template = 'controller.main';
-
-    /**
-     * Nome da classe
-     */
-    protected string $name = 'Main';
+    * Classe de controller 
+    *
+    * @param Module $module
+    */ 
+    public function __construct(Module $module)
+    {
+        $this->setClassName('Main')
+             ->setTemplate('controller.main')
+             ->setModule($module);
+    }
 
     /**
      * {@inheritDoc}
      */
-    protected function getArguments(): array
+    public function placeholders(): array
     {
         return [
-            'classname'  => $this->getName(),
-            'namespace'  => $this->getNamespace(),
-            'modulename' => strtolower($this->module),
-        ];
+            'classname'  => $this->className(),
+            'namespace'  => $this->module()->namespace(),
+            'modulename' => $this->module()->lcname(),
+        ];        
     }
+
 
     /**
-     * Retorna o nome do controller
+     * Define o nome da classe e do arquivo do controller. 
      *
-     * @return string
+     * @param string $name
+     * @return Controller
      */
-    protected function getName() : string
+    protected function setClassName(string $name) : MainController
     {
-        return ucfirst($this->module);
+        $this->className = $name;
+        return $this;
     }
-
-    /**
-     * Retorna o nome do arquivo
-     *
-     * @return string
-     */
-    protected function getFilename(): string
-    {
-        return $this->getName() . $this->suffix;
-    }
-
 }

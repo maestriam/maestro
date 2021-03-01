@@ -2,14 +2,21 @@
 
 namespace Maestriam\Maestro\Entities\Controllers;
 
+use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Exceptions\InvalidSourceFilenameException;
 
 class BlankController extends BaseController 
 {
-    /**
-     * Nome do template
-     */
-    protected string $template = 'controller.blank';
+   /**
+    * Classe de controller 
+    *
+    * @param Module $module
+    */ 
+    public function __construct(Module $module)
+    {
+        $this->setModule($module)->setTemplate('controller.blank');
+    }
+
 
     /**
      * Define o nome da classe e do arquivo do controller. 
@@ -17,25 +24,20 @@ class BlankController extends BaseController
      * @param string $name
      * @return Controller
      */
-    public function name(string $name) : self
+    public function setClassName(string $name) : BaseController
     {
-        if (! $this->isValidName($name)) {
-            throw new InvalidSourceFilenameException($name);            
-        }
-
-        return $this->setName($name);
+        $this->className = $name;
+        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getArguments() : array
-    {
-        $namespace = $this->getNamespace();
-
+    public function placeholders(): array
+    {        
         return [
-            'namespace' => $namespace,
-            'classname' => $this->name
-        ];
+            'namespace' => $this->module()->namespace(),
+            'classname' => $this->className()
+        ];        
     }
 }

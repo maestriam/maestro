@@ -9,7 +9,7 @@ abstract class BaseController extends Source
     /**
      * Nome da classe do controller
      */
-    protected string $name;    
+    protected string $className;    
 
     /**
      * Sufixo do nome do arquivo de controller
@@ -17,36 +17,20 @@ abstract class BaseController extends Source
     protected string $suffix = 'Controller.php';
 
     /**
-     * Define o nome da classe do controller
-     *
-     * @param string $name
-     * @return Controller
-     */
-    protected function setName(string $name) : self
-    {
-        $this->name = ucfirst($name);
-
-        return $this;
-    }
-
-    /**
-     * Define do arquivo do controller
-     *
-     * @param string $name
-     * @return Controller
-     */
-    protected function getFilename() : string
-    {
-        return ucfirst($this->name) . $this->suffix;        
-    }
-
-    /**
-     * Retorna o namespace da classe
+     * Retorna o nome da classe
      *
      * @return string
      */
-    protected function getNamespace() : string
+    public function className() : string
     {
-        return ucfirst($this->vendor) ."\\". ucfirst($this->module);
+        return ucfirst($this->className);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filename() : string
+    {
+        return $this->className() . $this->suffix;        
+    }    
 }

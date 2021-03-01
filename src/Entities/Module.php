@@ -103,7 +103,7 @@ class Module implements ModuleInterface
      */
     public function namespace(bool $doubleBackSlash = false) : string
     {
-        $pattern = ($doubleBackSlash) ? "%s\\\\%s" : "%s\\%s";
+        $pattern = ($doubleBackSlash) ? "%s\\\\%s\\\\" : "%s\\%s\\";
 
         return sprintf($pattern, $this->vendor(), $this->name());
     }

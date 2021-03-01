@@ -9,13 +9,9 @@ class CreateModuleJsonTest extends JsonTestCase
     public function testCreateModuleJson()
     {        
         $module = $this->getModuleInstance();
-
-        $json = new ModuleJson($module);    
-            
-        $file = $json->create();
+        $json   = new ModuleJson($module);                
+        $file   = $json->create();
 
         $this->assertContentHasParsed($file);
     }
-
-
 }

@@ -3,24 +3,29 @@
 namespace Maestriam\Maestro\Entities\Jsons;
 
 use Illuminate\Support\Facades\Config;
+use Maestriam\Maestro\Entities\Module;
+use Maestriam\Maestro\Entities\Source;
 
-class ComposerJson extends BaseJsonFile 
+class ComposerJson extends Source 
 {
-    /**
-     * Nome do template
-     */
-    protected string $template = 'json.composer';
+    public function __construct(Module $module)
+    {
+        $this
+            ->setModule($module)
+            ->setTemplate('json.composer')
+            ->setFilename('composer.json');
+    }
 
     /**
      * {@inheritDoc}
      */
-    protected function getArguments() : array
+    public function placeholders() : array
     {
         return [
-            'name'      => $this->getName(),
+            'name'      => $this->module()->lcname(),
+            'namespace' => $this->module()->namespace(true),
             'author'    => $this->getAuthor(),
             'email'     => $this->getEmail(),
-            'namespace' => $this->getNamespace()
         ];
     }
 
@@ -42,25 +47,5 @@ class ComposerJson extends BaseJsonFile
     private function getEmail() : string 
     {
         return Config::get('Maestro:config.author.email');
-    }
-
-    /**
-     * Retorna o nome do modulo 
-     *
-     * @return string
-     */
-    protected function getName() : string 
-    {
-        return strtolower($this->module);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     */
-    protected function getFilename() : string
-    {
-        return 'composer.json';
     }
 }
