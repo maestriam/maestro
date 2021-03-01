@@ -1,32 +1,54 @@
 <?php
 namespace Maestriam\Maestro\Entities\Resources;
 
+use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Entities\Source;
 
 class BlankView extends Source
 {
-    protected string $template = 'view.blank';
-
-    public function name(string $name) : self
+    public function __construct(Module $module)
     {
-        $this->name = $name;
+        $this->setModule($module)
+             ->setTemplate('view-blank');
+    }
+
+    /**
+     * Define o nome da view
+     *
+     * @param string $name
+     * @return self
+     */
+    public function setName(string $name) : self
+    {
+        $this->name = strtolower($name);
         return $this;
     }
-    
+
     /**
-     * 
+     * Retorna o nome da view
      *
      * @return string
      */
-    protected function getFilename(): string
+    public function name() : string
     {
-        return $this->name . '.blade.php';
+        return $this->name;
     }
 
-    protected function getArguments(): array
+    /**
+     * {@inheritDoc}
+     */
+    public function filename(): string
+    {
+        return $this->name() . '.blade.php';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function placeholders(): array
     {
         return [
-            'module' => $this->module,
+            'module' => $this->module()->name(),
         ];
     }
 }

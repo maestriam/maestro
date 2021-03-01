@@ -11,7 +11,6 @@ abstract class BaseProvider extends Source
      */
     private string $suffixName = 'ServiceProvider.php';
 
-
     /**
      * Retorna o sufixo do arquivo
      *

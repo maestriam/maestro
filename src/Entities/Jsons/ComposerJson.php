@@ -12,7 +12,7 @@ class ComposerJson extends Source
     {
         $this
             ->setModule($module)
-            ->setTemplate('json.composer')
+            ->setTemplate('json-composer')
             ->setFilename('composer.json');
     }
 

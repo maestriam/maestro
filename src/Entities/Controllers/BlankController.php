@@ -14,7 +14,7 @@ class BlankController extends BaseController
     */ 
     public function __construct(Module $module)
     {
-        $this->setModule($module)->setTemplate('controller.blank');
+        $this->setModule($module)->setTemplate('controller-blank');
     }
 
 

@@ -11,7 +11,7 @@ class ModuleJson extends Source
     {
         $this
             ->setModule($module)
-            ->setTemplate('json.module')
+            ->setTemplate('json-module')
             ->setFilename('module.json');
     }
 

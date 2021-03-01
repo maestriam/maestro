@@ -11,7 +11,7 @@ class ApiRoute extends Source
     {
         $this->setModule($module)
              ->setFilename('api.php')
-             ->setTemplate('route.api');
+             ->setTemplate('route-api');
     }
 
     /**

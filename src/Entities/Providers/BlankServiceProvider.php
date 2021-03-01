@@ -52,9 +52,7 @@ class BlankServiceProvider extends BaseProvider
     }
 
     /**
-     * Retorna o nome do arquivo
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function filename(): string
     {

@@ -65,12 +65,12 @@ return [
         */
 
         'structure' => [            
-            'json.*'       => '.',
-            'provider.*'   => 'Providers',            
+            'json-*'       => '.',
+            'provider-*'   => 'Providers',            
             'route.*'      => 'Routes',
-            'controller.*' => 'Http/Controllers',
-            'config'       => 'Config',
-            'view.*'       => 'Resources/views',
+            'controller-*' => 'Http/Controllers',
+            'file-config'  => 'Config',
+            'view-*'       => 'Resources/views'
         ]
     ]
 ];

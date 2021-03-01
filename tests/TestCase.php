@@ -42,12 +42,12 @@ class TestCase extends BaseTesCase
                 'root_folder' => __DIR__ . '/../devnull',
                 'template_folder' => __DIR__ . '/../templates',
                 'structure' => [            
-                    'json.*'       => '.',
-                    'provider.*'   => 'Providers',            
-                    'route.*'      => 'Routes',
-                    'controller.*' => 'Http/Controllers',
-                    'config'       => 'Config',
-                    'view.blank'   => 'Resources/views'
+                    'json-*'       => '.',
+                    'provider-*'   => 'Providers',            
+                    'route-*'      => 'Routes',
+                    'controller-*' => 'Http/Controllers',
+                    'file-config'  => 'Config',
+                    'view-*'       => 'Resources/views'
                 ]
             ]
         ]);

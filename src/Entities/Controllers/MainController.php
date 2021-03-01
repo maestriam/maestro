@@ -16,7 +16,7 @@ class MainController extends BaseController
     {
         $this->setClassName($module->name())
              ->setModule($module)             
-             ->setTemplate('controller.main');
+             ->setTemplate('controller-main');
     }
 
     /**

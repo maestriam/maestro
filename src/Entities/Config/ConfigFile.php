@@ -2,27 +2,30 @@
 
 namespace Maestriam\Maestro\Entities\Config;
 
+use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Entities\Source;
 
 class ConfigFile extends Source
 {
-    /**
-     * Nome do template
-     */
-    protected string $template = 'config';
+    public function __construct(Module $module)
+    {
+        $this->setModule($module)
+             ->setTemplate('file-config');
+    }
 
     /**
-     * Undocumented function
-     *
-     * @return array
+     * {@inheritDoc}
      */
-    protected function getArguments(): array
+    public function placeholders(): array
     {
         return [];
     }
 
-    protected function getFilename(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function filename(): string
     {
-        return 'config.php';
+        return 'config.php';        
     }
 }

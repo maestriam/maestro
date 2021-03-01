@@ -11,7 +11,7 @@ class WebRoute extends Source
     {
         $this->setModule($module)
              ->setFilename('web.php')
-             ->setTemplate('route.web');
+             ->setTemplate('route-web');
     }
 
     /**
