@@ -2,59 +2,43 @@
 
 namespace Maestriam\Maestro\Entities\Providers;
 
+use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Exceptions\InvalidSourceFilenameException;
 
 class BlankServiceProvider extends BaseProvider 
-{
-    /**
-     * Nome do template
-     */
-    protected string $template = 'provider.blank';
-
+{    
     /**
      * Nome da classe do service provider
      */
-    private string $name;
+    private string $className;
 
-    /**
-     * Define o nome da classe e do arquivo do service provider. 
-     *
-     * @param string $name
-     * @return Controller
-     */
-    public function name(string $name) : self
+    public function __construct(Module $module)
     {
-        if (! $this->isValidName($name)) {
-            throw new InvalidSourceFilenameException($name);            
-        }
-
-        $this->name = $name;
-
-        return $this;
+        $this->setModule($module)
+             ->setTemplate('provider-blank');
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getArguments() : array
+    public function placeholders(): array
     {
         return [
-            'namespace' => $this->getNamespace(),
-            'classname' => $this->getClassName(),
+            'classname' => $this->className(),
+            'namespace' => $this->module()->namespace(),
         ];
     }
-
+    
     /**
-     * Retorna o nome do modulo 
+     * Define o nome da classe
      *
-     * @return string
-     */
-    protected function getNamespace() : string 
+     * @param string $name
+     * @return BlankServiceProvider
+     */ 
+    public function setClassName(string $name) : BlankServiceProvider
     {
-        $vendor = ucfirst($this->vendor);
-        $module = ucfirst($this->module);
-        
-        return sprintf("%s\\%s", $vendor, $module);
+        $this->className = ucfirst($name);
+        return $this;
     }
 
     /**
@@ -62,18 +46,18 @@ class BlankServiceProvider extends BaseProvider
      *
      * @return string
      */
-    protected function getClassName() : string
+    public function className() : string
     {
-        return ucfirst($this->name);
+        return $this->className;
     }
 
     /**
-     * Retorna o nome do arquivo 
+     * Retorna o nome do arquivo
      *
      * @return string
      */
-    protected function getFilename() : string
+    public function filename(): string
     {
-        return ucfirst($this->name) . $this->suffix;
+        return $this->className() . $this->suffix();
     }
 }

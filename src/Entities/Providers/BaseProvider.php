@@ -9,5 +9,16 @@ abstract class BaseProvider extends Source
     /**
      * Sulfixo do nome do arquivo
      */
-    protected string $suffix = 'ServiceProvider.php';
+    private string $suffixName = 'ServiceProvider.php';
+
+
+    /**
+     * Retorna o sufixo do arquivo
+     *
+     * @return string
+     */
+    protected function suffix() : string
+    {
+        return $this->suffixName;
+    }
 }

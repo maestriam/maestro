@@ -53,9 +53,9 @@ class FileSystem
     }
 
     /**
-     * Undocumented function
+     * Carrega as configurações para criação de arquivo
      *
-     * @return self
+     * @return FileSystem
      */
     private function loadConfig() : FileSystem
     {                            

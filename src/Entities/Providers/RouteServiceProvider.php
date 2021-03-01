@@ -2,45 +2,32 @@
 
 namespace Maestriam\Maestro\Entities\Providers;
 
+use Maestriam\Maestro\Entities\Module;
+
 class RouteServiceProvider extends BaseProvider 
 {
-    /**
-     * Nome do template
-     */
-    protected string $template = 'provider.route';
-
-    /**
-     * 
-     */
-    protected string $suffix = 'ServiceProvider.php';
+    public function __construct(Module $module)
+    {
+        $this->setModule($module)
+             ->setTemplate('provider-route');
+    }
 
     /**
      * {@inheritDoc}
      */
-    protected function getArguments() : array
+    public function placeholders(): array
     {
         return [
-            'module' => $this->getModule(),
-        ];
+            'namespace' => $this->module()->namespace(),
+            'module'    => $this->module()->name(),
+        ];        
     }
 
     /**
-     * Retorna o nome do módulo
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    protected function getModule() : string
+    public function filename(): string
     {
-        return ucfirst($this->module);
-    }
-
-    /**
-     * Retorna o nome do arquivo 
-     *
-     * @return string
-     */
-    protected function getFilename() : string
-    {
-        return 'Route' . $this->suffix;
+        return 'Route' . $this->suffix();
     }
 }
