@@ -2,44 +2,48 @@
 
 namespace Maestriam\Maestro\Entities\Routes;
 
+use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Entities\Source;
 
 class WebRoute extends Source
 {
-    protected string $template = 'route.web';
+    public function __construct(Module $module)
+    {
+        $this->setModule($module)
+             ->setFilename('web.php')
+             ->setTemplate('route.web');
+    }
 
-    protected function getArguments() : array
+    /**
+     * {@inheritDoc}
+     */
+    public function placeholders(): array
     {
         return [
-            'module'     => $this->getModule(),
+            'namespace'  => $this->module()->namespace(),
+            'module'     => $this->module()->lcname(),
             'controller' => $this->getController(),
-            'namespace'  => $this->getNamespace(),
             'function'   => $this->getFunction(),
-        ];
-    } 
+        ];        
+    }
 
+    /**
+     * Retorna o nome do controller principal
+     *
+     * @return string
+     */
     protected function getController() : string
     {
-        return ucfirst($this->module) . 'Controller';
+        return $this->module()->name() . 'Controller';
     }
 
-    protected function getModule() : string
-    {
-        return strtolower($this->module);
-    }
-
-    protected function getFilename() : string
-    {
-        return 'web.php';   
-    }
-
+    /**
+     * Retorna o nome da função do controller
+     *
+     * @return string
+     */
     protected function getFunction() : string
     {
         return 'index';
-    }
-
-    protected function getNamespace() : string
-    {
-        return ucfirst($this->vendor) . '\\' . ucfirst($this->module);
     }
 }
