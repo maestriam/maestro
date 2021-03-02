@@ -211,6 +211,7 @@ class CreateEntitiesTest extends TestCase
         
         $this->assertContentHasParsed($file);
     }
+    
 
     /**
      * Retorna um módulo para teste

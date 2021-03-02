@@ -52,7 +52,8 @@ class TestCase extends BaseTesCase
                     'file-config'  => 'Config',
                     'view-*'       => 'Resources/views',
                     'model-*'      => 'Entities',
-                    'migration-*'  => 'Database/Migrations' 
+                    'migration-*'  => 'Database/Migrations',
+                    'seed-*'       => 'Database/Seeders'
                 ]
             ]
         ]);
@@ -81,6 +82,12 @@ class TestCase extends BaseTesCase
 
         $this->assertFileExists($file->path);
         $this->assertStringNotContainsString("{{", $content);
-        $this->assertStringNotContainsString("}}", $content);  
+        $this->assertStringNotContainsString("{{", $content);
+        $this->assertHasNoDoubleBackSlashes($content);
+    }
+        
+    protected function assertHasNoDoubleBackSlashes($content)
+    {
+        $this->assertStringNotContainsString("\\\\", $content);  
     }
 }

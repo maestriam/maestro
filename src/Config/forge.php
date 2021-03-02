@@ -72,7 +72,8 @@ return [
             'file-config'  => 'Config',
             'view-*'       => 'Resources/views',
             'model-*'      => 'Entities',
-            'migration-*'  => 'Database/Migrations'
+            'migration-*'  => 'Database/Migrations',
+            'seed-*'       => 'Database/Seeders'
         ]
     ]
 ];
