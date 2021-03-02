@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Container;
+namespace Maestriam\Maestro\Tests\Unit\Container;
 
 use Maestriam\Maestro\Tests\TestCase;
 use Maestriam\Maestro\Entities\Containers\ProviderContainer;
@@ -32,7 +32,7 @@ class ProviderContainerTest extends TestCase
     public function testBlankServiceProviderInstance()
     {
         $container = $this->getInstance();
-        $provider  = $container->blank('foo');        
+        $provider  = $container->blank('Shaka');        
 
         $this->assertInstanceOf(BlankServiceProvider::class, $provider);
     }
@@ -44,9 +44,8 @@ class ProviderContainerTest extends TestCase
      */
     private function getInstance() : ProviderContainer
     {
-        $module    = 'SandBox';
-        $container = new ProviderContainer();
-
-        return $container->module($module);
+        $module    = $this->getModuleInstance('Gemini');
+        
+        return new ProviderContainer($module);
     }
 }

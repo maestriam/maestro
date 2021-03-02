@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Controllers;
+namespace Maestriam\Maestro\Tests\Unit\Activator;
 
 use Maestriam\Maestro\Tests\TestCase;
 use Nwidart\Modules\Activators\FileActivator;
@@ -18,13 +18,14 @@ class ActivateModuleTest extends TestCase
     }
 
     /**
-     * Retorna 
+     * Verifica se é possível registrar um módulo através do 
+     * laravel-modules 
      *
      * @return void
      */
     public function testActivateModule()
     {
-        $module    = 'SandBox'; 
+        $module    = 'Virgo'; 
         $activator = new FileActivator($this->app);
         
         $activator->setActiveByName($module, true);

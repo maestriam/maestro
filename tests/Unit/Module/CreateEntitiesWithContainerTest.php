@@ -1,11 +1,11 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Controllers;
+namespace Maestriam\Maestro\Tests\Units\Modules;
 
 use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Tests\TestCase;
 
-class CreateEntitiesWithContainerTest extends TestCase
+class CreateEntitiesTest extends TestCase
 {
     /**
      * {@inheritDoc}

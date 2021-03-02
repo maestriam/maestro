@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Controllers;
+namespace Maestriam\Maestro\Tests\Unit\Config;
 
 use Maestriam\Maestro\Entities\Config\ConfigFile;
 use Maestriam\Maestro\Tests\TestCase;

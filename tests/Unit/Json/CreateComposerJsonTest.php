@@ -1,18 +1,18 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Json;
+namespace Maestriam\Maestro\Tests\Unit\Json;
 
 use Maestriam\Maestro\Entities\Jsons\ComposerJson;
+use Maestriam\Maestro\Tests\TestCase;
 
-class CreateComposerJsonTest extends JsonTestCase
+class CreateComposerJsonTest extends TestCase
 {
     public function testCreateComposerJson()
     {        
         $module = $this->getModuleInstance();
-
-        $json   = new ComposerJson($module);  
-                      
-        $file   = $json->create();
+        
+        $json = new ComposerJson($module);                        
+        $file = $json->create();
 
         $this->assertContentHasParsed($file);
     }

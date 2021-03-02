@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Controllers;
+namespace Maestriam\Maestro\Tests\Unit\Controllers;
 
 use Maestriam\Maestro\Tests\TestCase;
 use Maestriam\Maestro\Entities\Controllers\BlankController;
