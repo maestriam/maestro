@@ -31,7 +31,9 @@ class ProviderContainer extends BaseContainer
     {
         $module = $this->module();
 
-        return new BlankServiceProvider($module);
+        $provider = new BlankServiceProvider($module);
+
+        return $provider->setClassName($name);
     }
     
     /**

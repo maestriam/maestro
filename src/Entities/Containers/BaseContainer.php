@@ -14,12 +14,21 @@ class BaseContainer
         $this->setModule($module);   
     }
 
+    /**
+     * Define o módulo que ficará responsável pelo arquivo
+     *
+     * @param Module $module
+     * @return void
+     */
     public function setModule(Module $module)
     {
         $this->module = $module;       
         return $this;
     }
 
+    /**
+     * Retorna o módulo que o arquivo está contido
+     */
     public function module() : Module
     {
         return $this->module;

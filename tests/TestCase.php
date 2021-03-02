@@ -9,6 +9,9 @@ use Maestriam\Maestro\Providers\MaestroServiceProvider;
 
 class TestCase extends BaseTesCase
 {
+    /**
+     * {@inheritDoc}
+     */
     public function setUp() : void
     {
         parent::setUp();
@@ -74,6 +77,7 @@ class TestCase extends BaseTesCase
     {
         $content = file_get_contents($file->path);
 
+        $this->assertFileExists($file->path);
         $this->assertStringNotContainsString("{{", $content);
         $this->assertStringNotContainsString("}}", $content);  
     }

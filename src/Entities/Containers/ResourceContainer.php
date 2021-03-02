@@ -7,7 +7,7 @@ use Maestriam\Maestro\Entities\Resources\BlankView;
 
 class ResourceContainer extends BaseContainer
 {
-    public function blank(string $name) : BlankView
+    public function view(string $name) : BlankView
     {  
         $module = $this->module();
 

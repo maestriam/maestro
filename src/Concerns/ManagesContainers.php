@@ -59,7 +59,7 @@ trait ManagesContainers
      *
      * @return \Maestriam\Maestro\Entities\Containers\ResourceContainer
      */
-    public function view() : ResourceContainer
+    public function resource() : ResourceContainer
     {
         return new ResourceContainer($this);
     }  

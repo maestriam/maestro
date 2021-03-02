@@ -84,15 +84,6 @@ abstract class Source implements SourceInterface
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function setPlaceholders(array $placeholders) : self
-    {
-        $this->placeholders = $placeholders;
-        return $this;
-    }
-
-    /**
      * Define o nome do template que é utilizado como base
      *
      * @param string $template
