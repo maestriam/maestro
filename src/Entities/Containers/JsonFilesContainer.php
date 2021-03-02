@@ -31,4 +31,17 @@ class JsonFilesContainer extends BaseContainer
 
         return new ComposerJson($module);
     }
+
+    /**
+     * Cria todos os arquivos Json dentro do módulo
+     *
+     * @return JsonFilesContainer
+     */
+    public function init() : JsonFilesContainer
+    {
+        $this->composerFile()->create();
+        $this->moduleFile()->create();
+
+        return $this;
+    }
 }

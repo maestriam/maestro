@@ -1,10 +1,8 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Route;
+namespace Maestriam\Maestro\Tests\Unit\Route;
 
 use Maestriam\Maestro\Entities\Routes\ApiRoute;
-use Maestriam\Maestro\Entities\Routes\ComposerRoute;
-use Maestriam\Maestro\Entities\Routes\WebRoute;
 use Maestriam\Maestro\Tests\TestCase;
 
 class CreateApiRouteTest extends TestCase
@@ -16,7 +14,7 @@ class CreateApiRouteTest extends TestCase
 
     public function testCreateApiRoute()
     {
-        $module = $this->getModuleInstance();
+        $module = $this->getModuleInstance('Cancer');
 
         $api  = new ApiRoute($module);
         $file = $api->create();

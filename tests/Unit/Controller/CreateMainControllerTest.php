@@ -15,7 +15,7 @@ class CreateMainControllerTest extends TestCase
 
     public function testCreateBlank()
     {
-        $module     = $this->getModuleInstance();
+        $module     = $this->getModuleInstance('Serpentario');
         $controller = new MainController($module);
         
         $file = $controller->create();

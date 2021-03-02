@@ -48,4 +48,12 @@ class ProviderContainer extends BaseContainer
         return new  RouteServiceProvider($module);
     }
 
+
+    public function init() : ProviderContainer
+    {
+        $this->route()->create();
+        $this->main()->create();
+
+        return $this;
+    }
 }

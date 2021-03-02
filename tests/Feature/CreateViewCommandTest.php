@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Features;
+namespace Maestriam\Maestro\Tests\Feature;
 
 use Maestriam\Maestro\Tests\TestCase;
 
@@ -8,12 +8,9 @@ class CreateViewCommandTest extends TestCase
 {
     public function testCreateViewCmd()
     {
-        $parameters = [
-            'name'   => 'Command', 
-            'module' => 'SandBox'
-        ];
+        $parameters = ['name' => 'Aldebaran', 'module' => 'Taurus'];
 
-        $output = 'Service provider created.';
+        $output = 'View created.';
 
         $this->artisan('maestro:view', $parameters)
              ->expectsOutput($output);

@@ -10,11 +10,11 @@ use Nwidart\Modules\Activators\FileActivator;
 trait ActivesModule
 {
     public function active() : void
-    {
+    {        
+        $name = $this->name();
+     
         $activator = new FileActivator($this->app);
         
-        $name = $this->getModuleName();
-
         $activator->setActiveByName($name, true);
     }    
 }

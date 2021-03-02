@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Route;
+namespace Maestriam\Maestro\Tests\Unit\Route;
 
 use Maestriam\Maestro\Entities\Routes\ComposerRoute;
 use Maestriam\Maestro\Entities\Routes\WebRoute;
@@ -10,7 +10,8 @@ class CreateWebRouteTest extends TestCase
 {
     public function testCreateWebRoute()
     {        
-        $module = $this->getModuleInstance();
+        $module = $this->getModuleInstance('Libra');
+
         $route  = new WebRoute($module);                        
         $file   = $route->create();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Features;
+namespace Maestriam\Maestro\Tests\Feature;
 
 use Maestriam\Maestro\Tests\TestCase;
 
@@ -8,10 +8,7 @@ class CreateServiceProviderCommandTest extends TestCase
 {
     public function testCreateControllerCmd()
     {
-        $parameters = [
-            'name'   => 'Command', 
-            'module' => 'SandBox'
-        ];
+        $parameters = ['name' => 'Shiryu', 'module' => 'Dragon'];
 
         $output = 'Service provider created.';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Units\Modules;
+namespace Maestriam\Maestro\Tests\Unit\Modules;
 
 use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Tests\TestCase;
@@ -64,6 +64,24 @@ class CreateEntitiesTest extends TestCase
         $file = $module
                     ->route()
                     ->web()
+                    ->create();
+        
+        $this->assertContentHasParsed($file);
+    }
+
+    /**
+     * Testa se através do objeto de módulo consegue criar 
+     * um nova rota web
+     *
+     * @return void
+     */
+    public function testCreateApiRoute()
+    {
+        $module = $this->getModule();
+
+        $file = $module
+                    ->route()
+                    ->api()
                     ->create();
         
         $this->assertContentHasParsed($file);

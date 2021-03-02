@@ -43,8 +43,8 @@ class CreateViewCommand extends Command
         $module = $this->argument('module');
 
         Maestro::module($module)
-               ->view()
-               ->blank($name)
+               ->resource()
+               ->view($name)
                ->create();
 
         $this->info('View created.');

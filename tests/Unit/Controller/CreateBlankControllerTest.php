@@ -14,10 +14,12 @@ class CreateBlankControllerTest extends TestCase
 
     public function testCreateBlank()
     {
-        $module     = $this->getModuleInstance();
+        $module     = $this->getModuleInstance('Sagittarius');
         $controller = new BlankController($module);
         
-        $file = $controller->setClassName('Index')->create();
+        $file = $controller
+                    ->setClassName('Aiolos')
+                    ->create();
 
         $this->assertContentHasParsed($file);
     }

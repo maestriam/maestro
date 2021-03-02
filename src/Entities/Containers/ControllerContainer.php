@@ -34,4 +34,16 @@ class ControllerContainer extends BaseContainer
 
         return $controller->setClassName($name);   
     }
+
+    /**
+     * Cria o controller principal dentro de um módulo
+     *
+     * @return ControllerContainer
+     */
+    public function init() : ControllerContainer
+    {
+        $this->main()->create();
+
+        return $this;
+    }
 }

@@ -62,7 +62,7 @@ class TestCase extends BaseTesCase
      * @param string $name
      * @return Module
      */
-    protected function getModuleInstance(string $name = 'Foo') : Module
+    protected function getModuleInstance(string $name = 'Pegasus') : Module
     {
         return new Module($name, $this->app);
     }

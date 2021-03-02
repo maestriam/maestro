@@ -14,7 +14,7 @@ class CreateConfigFileTest extends TestCase
 
     public function testCreateBlank()
     {
-        $module = $this->getModuleInstance();
+        $module = $this->getModuleInstance('Eagle');
         $config = new ConfigFile($module);
         
         $file = $config->create();

@@ -3,12 +3,13 @@
 namespace Maestriam\Maestro\Entities;
 
 use Illuminate\Container\Container;
+use Maestriam\Maestro\Concerns\ActivesModule;
 use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
 
 class Module implements ModuleInterface
 {    
-    use ManagesContainers;
+    use ManagesContainers, ActivesModule;
 
     /**
      * Nome do módulo
@@ -107,6 +108,12 @@ class Module implements ModuleInterface
      */
     public function create() : Module
     {
+        $this->json()->init();
+        $this->route()->init();
+        $this->resource()->init();
+        $this->provider()->init();
+        $this->controller()->init();
+        $this->configFile()->create();
         return $this;
     }
 }

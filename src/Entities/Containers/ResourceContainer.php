@@ -15,4 +15,11 @@ class ResourceContainer extends BaseContainer
 
         return $view->setName($name);
     }
+
+    public function init() : ResourceContainer
+    {
+        $this->view('index')->create();
+
+        return $this;
+    }
 }

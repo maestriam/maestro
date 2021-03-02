@@ -20,7 +20,7 @@ class ApiRoute extends Source
     public function placeholders(): array
     {
         return [
-            'module'  => $this->module()->lcname(),
+            'module' => $this->module()->lcname(),
         ];        
     }
 }
