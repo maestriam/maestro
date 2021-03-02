@@ -50,7 +50,9 @@ class TestCase extends BaseTesCase
                     'route-*'      => 'Routes',
                     'controller-*' => 'Http/Controllers',
                     'file-config'  => 'Config',
-                    'view-*'       => 'Resources/views'
+                    'view-*'       => 'Resources/views',
+                    'model-*'      => 'Entities',
+                    'migration-*'  => 'Database/Migrations' 
                 ]
             ]
         ]);

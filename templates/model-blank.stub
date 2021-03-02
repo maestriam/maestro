@@ -1,0 +1,19 @@
+<?php
+
+namespace {{namespace}}Entities;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use {{namespace}}Database\Factories\{{classname}}Factory;
+
+class {{classname}} extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [];
+    
+    protected static function newFactory()
+    {
+        return {{classname}}Factory::new();
+    }
+}

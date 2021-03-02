@@ -11,8 +11,7 @@ class ComposerJson extends Source
     public function __construct(Module $module)
     {
         $this
-            ->setModule($module)
-            ->setTemplate('json-composer')
+            ->init($module, 'json-composer')
             ->setFilename('composer.json');
     }
 

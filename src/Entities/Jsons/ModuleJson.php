@@ -10,8 +10,7 @@ class ModuleJson extends Source
     public function __construct(Module $module)
     {
         $this
-            ->setModule($module)
-            ->setTemplate('json-module')
+            ->init($module, 'json-module')
             ->setFilename('module.json');
     }
 

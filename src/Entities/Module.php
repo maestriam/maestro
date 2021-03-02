@@ -114,6 +114,7 @@ class Module implements ModuleInterface
         $this->provider()->init();
         $this->controller()->init();
         $this->configFile()->create();
+        $this->database()->init();
         return $this;
     }
 }

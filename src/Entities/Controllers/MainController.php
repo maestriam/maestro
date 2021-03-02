@@ -14,9 +14,8 @@ class MainController extends BaseController
     */ 
     public function __construct(Module $module)
     {
-        $this->setClassName($module->name())
-             ->setModule($module)             
-             ->setTemplate('controller-main');
+        $this->init($module, 'controller-main');
+        $this->setClassName($module->name());
     }
 
     /**

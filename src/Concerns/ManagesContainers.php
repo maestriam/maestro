@@ -4,6 +4,7 @@ namespace Maestriam\Maestro\Concerns;
 
 use Maestriam\Maestro\Entities\Config\ConfigFile;
 use Maestriam\Maestro\Entities\Containers\ControllerContainer;
+use Maestriam\Maestro\Entities\Containers\DatabaseContainer;
 use Maestriam\Maestro\Entities\Containers\JsonFilesContainer;
 use Maestriam\Maestro\Entities\Containers\ProviderContainer;
 use Maestriam\Maestro\Entities\Containers\ResourceContainer;
@@ -72,5 +73,15 @@ trait ManagesContainers
     public function route() : RouteContainer
     {
         return new RouteContainer($this);
+    }
+
+    /**
+     * Retorna a instância de operadores relacionados a banco de dados
+     *
+     * @return DatabaseContainer
+     */
+    public function database() : DatabaseContainer
+    {
+        return new DatabaseContainer($this);
     }
 }

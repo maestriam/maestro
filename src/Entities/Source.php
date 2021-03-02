@@ -37,6 +37,20 @@ abstract class Source implements SourceInterface
     }
 
     /**
+     * Define as propriedades principais ao iniciar o objeto
+     * de manipulação de código
+     *
+     * @param Module $module
+     * @param string $template
+     * @return Source
+     */
+    public function init(Module $module, string $template) : Source
+    {
+        return $this->setModule($module)
+                    ->setTemplate($template);
+    }
+
+    /**
      * Retorna a instância de criação de arquivos
      *
      * @return FileSystem
