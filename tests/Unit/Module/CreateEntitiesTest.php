@@ -211,6 +211,42 @@ class CreateEntitiesTest extends TestCase
         
         $this->assertContentHasParsed($file, true);
     }
+
+    /**
+     * Testa se através do objeto de módulo consegue criar 
+     * uma nova factory
+     *
+     * @return void
+     */
+    public function testCreateFactory()
+    {
+        $module = $this->getModule();
+
+        $file = $module
+                    ->database()
+                    ->factory('Ikki')
+                    ->create();
+        
+        $this->assertContentHasParsed($file, true);
+    }
+
+    /**
+     * Testa se através do objeto de módulo consegue criar 
+     * uma nova factory
+     *
+     * @return void
+     */
+    public function testCreateModel()
+    {
+        $module = $this->getModule();
+
+        $file = $module
+                    ->database()
+                    ->model('Ikki')
+                    ->create();
+        
+        $this->assertContentHasParsed($file, true);
+    }
     
 
     /**

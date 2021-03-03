@@ -53,7 +53,8 @@ class TestCase extends BaseTesCase
                     'view-*'       => 'Resources/views',
                     'model-*'      => 'Entities',
                     'migration-*'  => 'Database/Migrations',
-                    'seed-*'       => 'Database/Seeders'
+                    'seed-*'       => 'Database/Seeders',
+                    'factory-*'    => 'Database/Factories',
                 ]
             ]
         ]);

@@ -4,6 +4,7 @@ namespace Maestriam\Maestro\Entities\Containers;
 
 use Illuminate\Support\Str;
 use Maestriam\Maestro\Entities\Database\BaseMigration;
+use Maestriam\Maestro\Entities\Database\BlankFactory;
 use Maestriam\Maestro\Entities\Database\BlankMigration;
 use Maestriam\Maestro\Entities\Database\BlankSeed;
 use Maestriam\Maestro\Entities\Database\MainMigration;
@@ -50,6 +51,14 @@ class DatabaseContainer extends BaseContainer
         $migration = $this->decideMigration($name);
 
         return $migration->setClassName($name);
+    }
+
+    public function factory(string $name) : BlankFactory
+    {
+        $module  = $this->module();
+        $factory = new BlankFactory($module);
+
+        return $factory->setClassName($name);
     }
 
     /**
