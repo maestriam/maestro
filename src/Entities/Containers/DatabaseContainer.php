@@ -53,6 +53,12 @@ class DatabaseContainer extends BaseContainer
         return $migration->setClassName($name);
     }
 
+    /**
+     * Retorna uma instância de factory para a Model
+     *
+     * @param string $name
+     * @return BlankFactory
+     */
     public function factory(string $name) : BlankFactory
     {
         $module  = $this->module();
@@ -74,6 +80,7 @@ class DatabaseContainer extends BaseContainer
 
         $this->model($name)->create();
         $this->seeder($name)->create();
+        $this->factory($name)->create();
         $this->migration($exp)->create();
 
         return $this;
