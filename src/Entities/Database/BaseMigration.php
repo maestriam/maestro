@@ -17,7 +17,7 @@ abstract class BaseMigration extends Source
     protected function toSnake(string $name) : string
     {
         $exp  = "%s_%s.php";
-        $now  = now()->format('Y_m_d_H_m_s');
+        $now  = now()->format('Y_m_d_h_m_s');
         $name = preg_replace('/\B([A-Z])/', '_$1', $name);
 
         return strtolower(sprintf($exp, $now, $name));

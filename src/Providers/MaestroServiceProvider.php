@@ -2,27 +2,43 @@
 
 namespace Maestriam\Maestro\Providers;
 
-use Maestriam\Maestro\Console\CreateControllerCommand;
-use Maestriam\Maestro\Console\CreateModuleCommand;
-use Maestriam\Maestro\Console\CreateServiceProviderCommand;
-use Maestriam\Maestro\Console\CreateViewCommand;
 use Maestriam\Maestro\Entities\Maestro;
 use Nwidart\Modules\LaravelModulesServiceProvider;
+use Maestriam\Maestro\Console\CreateViewCommand;
+use Maestriam\Maestro\Console\CreateModelCommand;
+use Maestriam\Maestro\Console\CreateModuleCommand;
+use Maestriam\Maestro\Console\CreateControllerCommand;
+use Maestriam\Maestro\Console\CreateServiceProviderCommand;
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
+    /**
+     * Ao iniciar o carregamento do projeto...
+     *
+     * @return void
+     */
     public function boot()
     {
         parent::boot();
-        $this->registerConfs();
         $this->registerCommands();
-    }
-
-    public function register()
-    {
-        parent::register();
         $this->registerFacade();        
     }
 
+    /**
+     * Registra os services providers auxiliares
+     *
+     * @return void
+     */
+    public function register()
+    {
+        parent::register();
+        $this->app->register(RegisterConfigServiceProvider::class);
+    }
+
+    /**
+     * Configura o pacote auxiliar laravel-modules 
+     *
+     * @return void
+     */
     protected function registerNamespaces()
     {
         $config = __DIR__ . '/../Config/modules.php';
@@ -30,6 +46,11 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
         $this->mergeConfigFrom($config, 'modules');
     }
 
+    /**
+     * Disponibiliza o Facade do projeto para o usuário
+     *
+     * @return void
+     */
     protected function registerFacade()
     {
         $this->app->bind('maestro',function() {
@@ -37,6 +58,11 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
         });          
     }
 
+    /**
+     * Registra todos os comandos disponíveis 
+     *
+     * @return void
+     */
     private function registerCommands()
     {
         $this->commands([
@@ -44,28 +70,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateModuleCommand::class,
             CreateViewCommand::class,
             CreateServiceProviderCommand::class,
+            CreateModelCommand::class,
         ]);
     }
-
-    /**
-     * Registra as configurações do pacote
-     *
-     * @return ForgeServiceProvider
-     */    
-    private function registerConfs() : MaestroServiceProvider
-    {              
-        $source    = __DIR__.'/../Config/config.php';
-        $published = config_path('forge.php');
-
-        $this->publishes([$source => $published], 'Maestro');        
-        
-        $forge  = __DIR__.'/../Config/forge.php';
-        $module = __DIR__.'/../Config/modules.php';
-        $config = (is_file($published)) ? $published : $source;  
-
-        $this->mergeConfigFrom($forge, 'Maestro:forge');
-        $this->mergeConfigFrom($config,'Maestro:config');
-
-        return $this;
-    } 
 }
