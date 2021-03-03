@@ -14,6 +14,6 @@ class CreateComposerJsonTest extends TestCase
         $json = new ComposerJson($module);                        
         $file = $json->create();
 
-        $this->assertContentHasParsed($file);
+        $this->assertContentHasParsed($file, true);
     }
 }

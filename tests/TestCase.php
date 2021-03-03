@@ -73,17 +73,21 @@ class TestCase extends BaseTesCase
     /**
      * Testa se o conteúdo do template foi interpretado corretamente
      *
-     * @param mixed $file
+     * @param $file
+     * @param boolean $assertDoubleSlashes
      * @return void
      */
-    protected function assertContentHasParsed($file) : void
+    protected function assertContentHasParsed($file, $assertDoubleSlashes = false) : void
     {
         $content = file_get_contents($file->path);
 
         $this->assertFileExists($file->path);
         $this->assertStringNotContainsString("{{", $content);
         $this->assertStringNotContainsString("{{", $content);
-        $this->assertHasNoDoubleBackSlashes($content);
+        
+        if (! $assertDoubleSlashes) {
+            $this->assertHasNoDoubleBackSlashes($content);            
+        }
     }
         
     protected function assertHasNoDoubleBackSlashes($content)

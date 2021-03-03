@@ -173,7 +173,7 @@ class CreateEntitiesTest extends TestCase
                     ->moduleFile()
                     ->create();
         
-        $this->assertContentHasParsed($file);
+        $this->assertContentHasParsed($file, true);
     }
 
     /**
@@ -209,7 +209,7 @@ class CreateEntitiesTest extends TestCase
                     ->composerFile()
                     ->create();
         
-        $this->assertContentHasParsed($file);
+        $this->assertContentHasParsed($file, true);
     }
     
 

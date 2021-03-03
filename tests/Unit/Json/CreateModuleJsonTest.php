@@ -14,6 +14,6 @@ class CreateModuleJsonTest extends TestCase
         $json = new ModuleJson($module);                
         $file = $json->create();
 
-        $this->assertContentHasParsed($file);
+        $this->assertContentHasParsed($file, true);
     }
 }
