@@ -39,5 +39,5 @@ Maestro::module('Bloomberg')->disable(); // returns bool
 
 **Returns all modules created in project**
 ```php
-Maestro::all(); // returns array
+Maestro::modules()->all(); // returns array
 ```

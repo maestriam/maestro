@@ -27,7 +27,7 @@ class TestCase extends BaseTesCase
     {
         return [
             MaestroServiceProvider::class,
-            ForgeServiceProvider::class
+            // ForgeServiceProvider::class
         ];
     }
 
@@ -42,19 +42,19 @@ class TestCase extends BaseTesCase
 
         $app['config']->set('Maestro:forge', [
             'maestro' => [
-                'root_folder' => __DIR__ . '/../devnull',
-                'template_folder' => __DIR__ . '/../templates',
+                'root_folder' => __DIR__ . '/../devnull/',
+                'template_folder' => __DIR__ . '/../templates/',
                 'structure' => [            
                     'json-*'       => '.',
-                    'provider-*'   => 'Providers',            
-                    'route-*'      => 'Routes',
-                    'controller-*' => 'Http/Controllers',
-                    'file-config'  => 'Config',
-                    'view-*'       => 'Resources/views',
-                    'model-*'      => 'Entities',
-                    'migration-*'  => 'Database/Migrations',
-                    'seed-*'       => 'Database/Seeders',
-                    'factory-*'    => 'Database/Factories',
+                    'provider-*'   => 'Providers/',
+                    'route.*'      => 'Routes/',
+                    'controller-*' => 'Http/Controllers/',
+                    'file-config'  => 'Config/',
+                    'view-*'       => 'Resources/views/',
+                    'model-*'      => 'Entities/',
+                    'migration-*'  => 'Database/Migrations/',
+                    'seed-*'       => 'Database/Seeders/',
+                    'factory-*'    => 'Database/Factories/'
                 ]
             ]
         ]);
@@ -80,9 +80,9 @@ class TestCase extends BaseTesCase
      */
     protected function assertContentHasParsed($file, $assertDoubleSlashes = false) : void
     {
-        $content = file_get_contents($file->path);
+        $content = file_get_contents($file->absolute_path);
 
-        $this->assertFileExists($file->path);
+        $this->assertFileExists($file->absolute_path);
         $this->assertStringNotContainsString("{{", $content);
         $this->assertStringNotContainsString("{{", $content);
         

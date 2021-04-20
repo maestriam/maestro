@@ -4,7 +4,7 @@
     "type": "package",
     "license": "MIT",
     "require": {
-        "maestriam/forge": "dev-master",
+        "maestriam/filesystem": "dev-master",
         "nwidart/laravel-modules": "^8.2"
     },
     "require-dev": {
@@ -37,7 +37,7 @@
     "repositories": [
         {
           "type": "path",
-          "url": "../forge"
+          "url": "../filesystem"
         }
     ]
 }

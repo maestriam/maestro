@@ -11,7 +11,7 @@ use Maestriam\Maestro\Entities\Containers\ResourceContainer;
 use Maestriam\Maestro\Entities\Containers\RouteContainer;
 
 /**
- * Adiciona poder para definir o nome do modulo
+ * Retorna as instância para manipulação de arquivos dentro do módulo
  */
 trait ManagesContainers
 {

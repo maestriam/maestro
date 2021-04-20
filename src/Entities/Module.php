@@ -6,10 +6,11 @@ use Illuminate\Container\Container;
 use Maestriam\Maestro\Concerns\ActivesModule;
 use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
+use Maestriam\Maestro\Concerns\ManagesDrive;
 
 class Module implements ModuleInterface
 {    
-    use ManagesContainers, ActivesModule;
+    use ManagesContainers, ActivesModule,ManagesDrive;
 
     /**
      * Nome do módulo
@@ -30,7 +31,8 @@ class Module implements ModuleInterface
     {
         $this->setVendor('Maestro')
              ->setName($name)             
-             ->setApp($app);    
+             ->setApp($app)
+             ->initDrive($name);    
     }
 
     /**
@@ -67,6 +69,18 @@ class Module implements ModuleInterface
     {
         $this->app = $app;
         return $this;
+    }
+
+    /**
+     * Retorna o caminho do módulo
+     *
+     * @return string
+     */
+    public function path() : string
+    {
+        $module = $this->lcname();
+
+        return $this->getRoot($module);
     }
     
     /**

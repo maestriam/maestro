@@ -20,7 +20,11 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
     {
         parent::boot();
         $this->registerCommands();
-        $this->registerFacade();        
+        $this->registerFacade();    
+        
+        if (! defined('DS')) {
+            define('DS', DIRECTORY_SEPARATOR);
+        }
     }
 
     /**

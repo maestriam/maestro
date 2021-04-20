@@ -39,7 +39,12 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
-        $module = $this->argument('module');
+        $name = $this->argument('module');
+
+        $module = Maestro::module($name)->find();
+
+        $migration = $module->database()->migration()->path();
+
     }
 
     /**

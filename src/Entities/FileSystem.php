@@ -35,9 +35,7 @@ class FileSystem
      */
     public function __construct(SourceInterface $source)
     {
-        $this->setSource($source)
-             ->loadConfig()
-             ->defineLocation();
+        $this->setSource($source);
     }
 
     /**
@@ -52,62 +50,7 @@ class FileSystem
         return $this;
     }
 
-    /**
-     * Carrega as configurações para criação de arquivo
-     *
-     * @return FileSystem
-     */
-    private function loadConfig() : FileSystem
-    {                            
-        $this->config = Config::get('Maestro:forge');
-        return $this;
-    }
-
-    /**
-     * Retorna o caminho do módulo
-     *
-     * @return string
-     */
-    private function getRootFolder() : string
-    {
-        $module = $this->source->module()->name();
-        $config = $this->config[$this->key];        
-        $folder = $config['root_folder'];
-
-        return $folder . DS . $module;
-    }
-
-    /**
-     * Ajusta nas configurações o local onde será
-     * depositado os arquivos depois de criados
-     *
-     * @todo Deixar essa regra no pacote Forge
-     * @return self
-     */
-    private function defineLocation() : FileSystem
-    {
-        $folder = $this->getRootFolder();
-        $config = $this->config[$this->key]; 
-
-        $config['root_folder'] = $folder;
-        $this->config[$this->key] = $config;
-        
-        return $this;
-    }
-
-    /**
-     * Retorna a instância do Maestriam/Forge
-     *
-     * @return Forge
-     */
-    private function forge() : Forge
-    {
-        $setup    = $this->key;
-        $config   = $this->config;
-        $template = $this->source->template();
-
-        return new Forge($setup, $template, $config);
-    }
+    
 
     /**
      * Executa a criação do arquivo
@@ -116,10 +59,15 @@ class FileSystem
      */
     public function create()
     {
-        $filename  = $this->source->filename();
-        $arguments = $this->source->placeholders();
+        $filename = $this->source->filename();
 
-        return $this->forge()->create($filename, $arguments);
+        $template = $this->source->template();
+        
+        $content = $this->source->placeholders();
+
+        $file = $this->source->module()->drive()->template($template);
+        
+        return $file->create($filename, $content);
     }
 
 }

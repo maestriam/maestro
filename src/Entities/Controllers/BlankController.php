@@ -3,7 +3,6 @@
 namespace Maestriam\Maestro\Entities\Controllers;
 
 use Maestriam\Maestro\Entities\Module;
-use Maestriam\Maestro\Exceptions\InvalidSourceFilenameException;
 
 class BlankController extends BaseController 
 {

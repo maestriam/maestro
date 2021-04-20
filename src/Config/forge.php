@@ -42,7 +42,7 @@ return [
         |
         */
 
-        'template_folder' => __DIR__ . '/../../templates',
+        'template_folder' => __DIR__ . '/../../templates/',
         
         /*
         |--------------------------------------------------------------------------
@@ -59,22 +59,21 @@ return [
         | na hora da criação. 
         | O caminho é definido pelo valor inserido na chave "root_folder" + sub-diretório
         | Se o sub-diretório não existir, ele será criado automáticamente pelo pacote.
-        | O caminho não deve ter barras no final.
         | 
         |
         */
 
         'structure' => [            
             'json-*'       => '.',
-            'provider-*'   => 'Providers',            
-            'route.*'      => 'Routes',
-            'controller-*' => 'Http/Controllers',
-            'file-config'  => 'Config',
-            'view-*'       => 'Resources/views',
-            'model-*'      => 'Entities',
-            'migration-*'  => 'Database/Migrations',
-            'seed-*'       => 'Database/Seeders',
-            'factory-*'    => 'Database/Factories'
+            'provider-*'   => 'Providers/',            
+            'route.*'      => 'Routes/',
+            'controller-*' => 'Http/Controllers/',
+            'file-config'  => 'Config/',
+            'view-*'       => 'Resources/views/',
+            'model-*'      => 'Entities/',
+            'migration-*'  => 'Database/Migrations/',
+            'seed-*'       => 'Database/Seeders/',
+            'factory-*'    => 'Database/Factories/'
         ]
     ]
 ];

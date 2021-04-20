@@ -46,8 +46,7 @@ abstract class Source implements SourceInterface
      */
     public function init(Module $module, string $template) : Source
     {
-        return $this->setModule($module)
-                    ->setTemplate($template);
+        return $this->setModule($module)->setTemplate($template);
     }
 
     /**
