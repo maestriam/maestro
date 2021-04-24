@@ -2,9 +2,9 @@
 
 namespace Maestriam\Maestro\Tests;
 
-
 use Maestriam\Maestro\Entities\Module;
 use Orchestra\Testbench\TestCase as BaseTesCase;
+use Maestriam\FileSystem\Providers\FileSystemProvider;
 use Maestriam\Maestro\Providers\MaestroServiceProvider;
 
 class TestCase extends BaseTesCase
@@ -27,6 +27,7 @@ class TestCase extends BaseTesCase
     {
         return [
             MaestroServiceProvider::class,
+            FileSystemProvider::class,
         ];
     }
 

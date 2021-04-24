@@ -56,7 +56,7 @@ interface ModuleInterface
      *
      * @return boolean
      */
-    public function exists() : bool;
+    //public function exists() : bool;
 
     /**
      * Tenta encontrar um módulo com um nome específico

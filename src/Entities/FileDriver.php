@@ -4,11 +4,10 @@ namespace Maestriam\Maestro\Entities;
 
 use Illuminate\Support\Facades\Config;
 use Maestriam\FileSystem\Foundation\Drive;
+use Maestriam\FileSystem\Support\FileSystem;
 
 class FileDriver
 {
-    private Drive $drive;
-
     private string $name;
 
     private string $key = 'Maestro:forge.maestro.';
@@ -56,7 +55,7 @@ class FileDriver
     {
         $path = $this->config('root_folder');
 
-        $this->root = $path . '.' . $this->name;
+        $this->root = $path . $this->name;
 
         return $this;
     }
@@ -95,7 +94,7 @@ class FileDriver
     {
         $name = $this->driveName();
 
-        $drive = new Drive($name);
+        $drive = FileSystem::drive($name);
 
         $drive->structure()->root($this->root);
         $drive->structure()->paths($this->paths);
@@ -115,7 +114,7 @@ class FileDriver
     {
         $name = $this->driveName();
 
-        $drive = new Drive($name);
+        $drive = FileSystem::drive($name);
 
         return ($drive->exists()) ? $drive : $this->init();
     }

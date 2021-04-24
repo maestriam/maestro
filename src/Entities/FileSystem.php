@@ -4,6 +4,7 @@ namespace Maestriam\Maestro\Entities;
 
 use Maestriam\Forge\Entities\Forge; 
 use Illuminate\Support\Facades\Config;
+use Maestriam\FileSystem\Support\FileSystem as System;
 use Maestriam\Maestro\Contracts\SourceInterface;
 
 class FileSystem
