@@ -3,14 +3,15 @@
 namespace Maestriam\Maestro\Entities;
 
 use Illuminate\Container\Container;
+use Maestriam\FileSystem\Foundation\Drive;
+use Maestriam\Maestro\Entities\FileDriver;
 use Maestriam\Maestro\Concerns\ActivesModule;
 use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
-use Maestriam\Maestro\Concerns\ManagesDrive;
 
 class Module implements ModuleInterface
 {    
-    use ManagesContainers, ActivesModule,ManagesDrive;
+    use ManagesContainers, ActivesModule;
 
     /**
      * Nome do módulo
@@ -26,6 +27,11 @@ class Module implements ModuleInterface
      * Instância de aplicação Laravel
      */
     private Container $app;
+
+    /**
+     * Instância para manipulação de arquivos e diretórios
+     */
+    private FileDriver $drive;
 
     public function __construct(string $name, Container $app)
     {
@@ -70,17 +76,19 @@ class Module implements ModuleInterface
         $this->app = $app;
         return $this;
     }
-
+    
     /**
-     * Retorna o caminho do módulo
+     * Inicia o drive para o módulo
      *
-     * @return string
+     * @return Module
      */
-    public function path() : string
+    private function initDrive() : Module
     {
-        $module = $this->lcname();
+        $name = $this->lcname();
 
-        return $this->getRoot($module);
+        $this->drive = new FileDriver($name);
+
+        return $this;
     }
     
     /**
@@ -115,6 +123,16 @@ class Module implements ModuleInterface
         $pattern = ($doubleBackSlash) ? "%s\\\\%s\\\\" : "%s\\%s\\";
 
         return sprintf($pattern, $this->vendor(), $this->name());
+    }
+
+    /**
+     * Instância para criação de arquivo
+     *
+     * @return Drive
+     */
+    public function drive() : Drive
+    {
+        return $this->drive->get();
     }
 
     /**

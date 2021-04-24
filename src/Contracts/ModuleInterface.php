@@ -4,6 +4,7 @@ namespace Maestriam\Maestro\Contracts;
 
 use Illuminate\Container\Container;
 use Maestriam\Maestro\Entities\Module;
+use Maestriam\FileSystem\Foundation\Drive;
 
 interface ModuleInterface
 {
@@ -37,11 +38,25 @@ interface ModuleInterface
     public function namespace(bool $doubleBackSlashes = false) : string; 
 
     /**
+     * Retorna o drive para manipulação de a
+     *
+     * @return Drive
+     */
+    public function drive() : Drive;
+
+    /**
      * Cria um novo módulo no projeto
      *
      * @return Module
      */
     public function create() : Module;
+
+    /**
+     * Verifica se o módulo existe.
+     *
+     * @return boolean
+     */
+    public function exists() : bool;
 
     /**
      * Tenta encontrar um módulo com um nome específico
@@ -57,13 +72,6 @@ interface ModuleInterface
      * @return Module
      */
     // public function findOrCreate() : Module;
-
-    /**
-     * Verifica se o módulo existe.
-     *
-     * @return boolean
-     */
-    // public function exists() : bool;
 
     /**
      * Define um novo módulo como "ativado"

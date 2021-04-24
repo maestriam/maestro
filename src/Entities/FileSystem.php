@@ -50,8 +50,6 @@ class FileSystem
         return $this;
     }
 
-    
-
     /**
      * Executa a criação do arquivo
      *
@@ -60,14 +58,13 @@ class FileSystem
     public function create()
     {
         $filename = $this->source->filename();
+        $template = $this->source->template();        
+        $content  = $this->source->placeholders();
 
-        $template = $this->source->template();
-        
-        $content = $this->source->placeholders();
+        $drive = $this->source->module()->drive();
 
-        $file = $this->source->module()->drive()->template($template);
+        $file = $drive->template($template);
         
         return $file->create($filename, $content);
     }
-
 }

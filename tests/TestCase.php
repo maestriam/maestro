@@ -2,7 +2,7 @@
 
 namespace Maestriam\Maestro\Tests;
 
-use Maestriam\Forge\Providers\ForgeServiceProvider;
+
 use Maestriam\Maestro\Entities\Module;
 use Orchestra\Testbench\TestCase as BaseTesCase;
 use Maestriam\Maestro\Providers\MaestroServiceProvider;
@@ -27,7 +27,6 @@ class TestCase extends BaseTesCase
     {
         return [
             MaestroServiceProvider::class,
-            // ForgeServiceProvider::class
         ];
     }
 
@@ -42,7 +41,7 @@ class TestCase extends BaseTesCase
 
         $app['config']->set('Maestro:forge', [
             'maestro' => [
-                'root_folder' => __DIR__ . '/../devnull/',
+                'root_folder' => __DIR__ . '/../sandbox/',
                 'template_folder' => __DIR__ . '/../templates/',
                 'structure' => [            
                     'json-*'       => '.',
