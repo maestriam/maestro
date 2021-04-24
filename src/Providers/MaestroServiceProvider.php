@@ -8,6 +8,7 @@ use Maestriam\Maestro\Console\CreateViewCommand;
 use Maestriam\Maestro\Console\CreateModelCommand;
 use Maestriam\Maestro\Console\CreateModuleCommand;
 use Maestriam\Maestro\Console\CreateControllerCommand;
+use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
@@ -19,12 +20,9 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
     public function boot()
     {
         parent::boot();
+        $this->registerConsts();
         $this->registerCommands();
         $this->registerFacade();    
-        
-        if (! defined('DS')) {
-            define('DS', DIRECTORY_SEPARATOR);
-        }
     }
 
     /**
@@ -75,6 +73,19 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateViewCommand::class,
             CreateServiceProviderCommand::class,
             CreateModelCommand::class,
+            CreateMigrationCommand::class,
         ]);
+    }
+
+    /**
+     * Registra as constantes utilizadas no pacote
+     *
+     * @return void
+     */
+    private function registerConsts()
+    {        
+        if (! defined('DS')) {
+            define('DS', DIRECTORY_SEPARATOR);
+        }
     }
 }

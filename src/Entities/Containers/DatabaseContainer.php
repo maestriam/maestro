@@ -3,10 +3,10 @@
 namespace Maestriam\Maestro\Entities\Containers;
 
 use Illuminate\Support\Str;
-use Maestriam\Maestro\Entities\Database\BaseMigration;
 use Maestriam\Maestro\Entities\Database\BlankFactory;
-use Maestriam\Maestro\Entities\Database\BlankMigration;
 use Maestriam\Maestro\Entities\Database\BlankSeed;
+use Maestriam\Maestro\Entities\Database\BaseMigration;
+use Maestriam\Maestro\Entities\Database\BlankMigration;
 use Maestriam\Maestro\Entities\Database\MainMigration;
 use Maestriam\Maestro\Entities\Model\BlankModel;
 

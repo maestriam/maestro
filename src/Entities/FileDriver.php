@@ -55,7 +55,7 @@ class FileDriver
     {
         $path = $this->config('root_folder');
 
-        $this->root = $path . $this->name;
+        $this->root = $path . ucfirst($this->name);
 
         return $this;
     }
@@ -86,13 +86,13 @@ class FileDriver
     }
 
     /**
-     * Undocumented function
+     * Inicia um novo drive para o módulo
      *
      * @return void
      */
     private function init() : Drive
     {
-        $name = $this->driveName();
+        $name = $this->generateName();
 
         $drive = FileSystem::drive($name);
 
@@ -112,7 +112,7 @@ class FileDriver
      */
     public function get() : Drive
     {
-        $name = $this->driveName();
+        $name = $this->generateName();
 
         $drive = FileSystem::drive($name);
 
@@ -124,7 +124,7 @@ class FileDriver
      *
      * @return string
      */
-    private function driveName() : string
+    private function generateName() : string
     {
         return 'drive-' . $this->name;
     }
