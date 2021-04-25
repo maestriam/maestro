@@ -4,12 +4,14 @@ namespace Maestriam\Maestro\Providers;
 
 use Maestriam\Maestro\Entities\Maestro;
 use Nwidart\Modules\LaravelModulesServiceProvider;
+use Maestriam\Maestro\Console\MigrateCommand;
 use Maestriam\Maestro\Console\CreateViewCommand;
 use Maestriam\Maestro\Console\CreateModelCommand;
 use Maestriam\Maestro\Console\CreateModuleCommand;
 use Maestriam\Maestro\Console\CreateControllerCommand;
 use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
+
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
     /**
@@ -74,6 +76,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateServiceProviderCommand::class,
             CreateModelCommand::class,
             CreateMigrationCommand::class,
+            MigrateCommand::class,
         ]);
     }
 

@@ -8,11 +8,12 @@ class CreateViewCommandTest extends TestCase
 {
     public function testCreateViewCmd()
     {
-        $parameters = ['name' => 'Aldebaran', 'module' => 'Taurus'];
-
+        $command = 'maestro:view';
+        
         $output = 'View created.';
+        
+        $params = ['name' => 'Aldebaran', 'module' => 'Taurus'];
 
-        $this->artisan('maestro:view', $parameters)
-             ->expectsOutput($output);
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

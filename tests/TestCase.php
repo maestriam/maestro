@@ -33,6 +33,15 @@ class TestCase extends BaseTesCase
 
     protected function getEnvironmentSetUp($app)
     {
+
+        $app['config']->set('database.default', 'sqlite');
+        
+        $app['config']->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
+
         $app['config']->set('Maestro:config', [
             'author' => [
                 'name'  => 'Giuliano Sampaio',
@@ -42,8 +51,9 @@ class TestCase extends BaseTesCase
 
         $app['config']->set('Maestro:forge', [
             'maestro' => [
-                'root_folder' => __DIR__ . '/../sandbox/',
-                'template_folder' => __DIR__ . '/../templates/',
+                'root_folder'      => __DIR__ . '/../sandbox/',
+                'template_folder'  => __DIR__ . '/../templates/',
+                'migration_folder' => 'Database/Migrations/',
                 'structure' => [            
                     'json-*'       => '.',
                     'provider-*'   => 'Providers/',

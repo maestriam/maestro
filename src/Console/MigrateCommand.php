@@ -40,11 +40,23 @@ class MigrateCommand extends Command
     public function handle()
     {
         $name = $this->argument('module');
+        
+        if ($name) {
+            return $this->migrateModule($name);
+        }
+    }
 
-        $module = Maestro::module($name)->find();
+    private function migrateModule(string $name)
+    {
+        $module = Maestro::module($name)->findOrFail();
 
-        $migration = $module->database()->migration()->path();
+        $response = $module->database()->migrate();
+    
+        if ($response) {
+            return $this->info('Module migrated.');
+        }
 
+        return $this->error('Error in migration.');
     }
 
     /**

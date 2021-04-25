@@ -2,6 +2,7 @@
 
 namespace Maestriam\Maestro\Entities\Containers;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Maestriam\Maestro\Entities\Database\BlankFactory;
 use Maestriam\Maestro\Entities\Database\BlankSeed;
@@ -87,6 +88,27 @@ class DatabaseContainer extends BaseContainer
     }
 
     /**
+     * Executa o migration do banco de dados do módulo
+     *
+     * @return string
+     */
+    public function migrate() : bool
+    {
+        try 
+        {
+            $path = $this->module()->migrationPath();
+
+            Artisan::call('migrate', ['--path' => $path]);
+            
+            return true;
+        
+        } catch (\Exception $e) {
+            
+            return false;
+        }
+    }
+
+    /**
      * Decide qual migration deve usar, de acordo com o 
      * nome da classe que o usuário digitou
      *
@@ -98,8 +120,10 @@ class DatabaseContainer extends BaseContainer
         $module = $this->module();
         $input  = strtolower($name);
 
-        return (Str::startsWith($input, 'create')) ? 
-                    new MainMigration($module) : 
-                    new BlankMigration($module);
+        if (Str::startsWith($input, 'create')) {
+            return new MainMigration($module);
+        } 
+                     
+        return new BlankMigration($module);
     }
 }

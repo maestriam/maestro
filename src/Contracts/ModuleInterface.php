@@ -38,7 +38,8 @@ interface ModuleInterface
     public function namespace(bool $doubleBackSlashes = false) : string; 
 
     /**
-     * Retorna o drive para manipulação de a
+     * Instância com as regras de negócio para gerenciamento de caminhos
+     * e criação de arquivos e diretórios do módulo
      *
      * @return Drive
      */
@@ -50,6 +51,13 @@ interface ModuleInterface
      * @return Module
      */
     public function create() : Module;
+
+    /**
+     * Retorna o caminho raíz do módulo
+     *
+     * @return string
+     */
+    public function path() : string;
 
     /**
      * Verifica se o módulo existe.

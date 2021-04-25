@@ -17,5 +17,5 @@ return [
     'author' => [
         'name'  => 'Giuliano Sampaio',
         'email' => 'giuguitar@gmail.com'
-    ]
+    ],
 ];

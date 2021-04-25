@@ -43,6 +43,10 @@ return [
         */
 
         'template_folder' => __DIR__ . '/../../templates/',
+
+
+        
+        'migration_folder' => 'Database/Migrations/',
         
         /*
         |--------------------------------------------------------------------------

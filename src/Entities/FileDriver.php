@@ -81,7 +81,7 @@ class FileDriver
     private function config(string $name) : string|array
     {
         $config = $this->key . $name;
-
+        
         return Config::get($config);
     }
 
@@ -117,6 +117,28 @@ class FileDriver
         $drive = FileSystem::drive($name);
 
         return ($drive->exists()) ? $drive : $this->init();
+    }
+
+    /**
+     * Retorna o caminho da raíz do módulo
+     *
+     * @return string
+     */
+    public function rootPath() : string 
+    {
+        return $this->root;
+    }
+
+    /**
+     * Retorna o caminho dos arquivos de migration do módulo
+     *
+     * @return string
+     */
+    public function migrationPath() : string
+    {
+        $sub = $this->config('migration_folder');
+
+        return $this->rootPath() . DS . $sub;
     }
 
     /**

@@ -8,6 +8,7 @@ use Maestriam\Maestro\Entities\FileDriver;
 use Maestriam\Maestro\Concerns\ActivesModule;
 use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
+use Maestriam\Maestro\Exceptions\ModuleNotFoundException;
 
 class Module implements ModuleInterface
 {    
@@ -102,6 +103,24 @@ class Module implements ModuleInterface
     /**
      * {@inheritDoc}
      */
+    public function path() : string
+    {
+        return $this->drive->rootPath();
+    }
+
+    /**
+     * Retorna o caminho dos arquivos de migration do módulo
+     *
+     * @return string
+     */
+    public function migrationPath() : string
+    {
+        return $this->drive->migrationPath();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function lcname() : string
     {
         return strtolower($this->name);
@@ -126,9 +145,7 @@ class Module implements ModuleInterface
     }
 
     /**
-     * Instância para criação de arquivo
-     *
-     * @return Drive
+     * {@inheritDoc}
      */
     public function drive() : Drive
     {
@@ -147,6 +164,35 @@ class Module implements ModuleInterface
         $this->controller()->init();
         $this->configFile()->create();
         $this->database()->init();
+        
+        return $this;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function exists() : bool
+    {
+        return (is_dir($this->path())) ? true : false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function find() : ?Module
+    {
+        return ($this->exists()) ? $this : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findOrFail() : Module
+    {
+        if (! $this->find()) {
+            throw new ModuleNotFoundException($this->name);            
+        }
+
         return $this;
     }
 }
