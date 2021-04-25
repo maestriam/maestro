@@ -108,6 +108,11 @@ class DatabaseContainer extends BaseContainer
         }
     }
 
+    private function migrationPath()
+    {
+
+    }
+
     /**
      * Decide qual migration deve usar, de acordo com o 
      * nome da classe que o usuário digitou

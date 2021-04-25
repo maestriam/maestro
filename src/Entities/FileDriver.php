@@ -138,7 +138,9 @@ class FileDriver
     {
         $sub = $this->config('migration_folder');
 
-        return $this->rootPath() . $sub;
+        $base = str_replace(base_path(), '', $this->rootPath());
+
+        return str_replace(DS, '/', $base . $sub);
     }
 
     /**
