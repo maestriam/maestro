@@ -55,7 +55,9 @@ class FileDriver
     {
         $path = $this->config('root_folder');
 
-        $this->root = $path . ucfirst($this->name);
+        $this->root = $path . ucfirst($this->name)  . DS;
+
+        dump($this->root);
 
         return $this;
     }
@@ -138,7 +140,7 @@ class FileDriver
     {
         $sub = $this->config('migration_folder');
 
-        return $this->rootPath() . DS . $sub;
+        return $this->rootPath() . $sub;
     }
 
     /**
