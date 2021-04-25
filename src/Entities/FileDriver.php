@@ -55,9 +55,7 @@ class FileDriver
     {
         $path = $this->config('root_folder');
 
-        $this->root = $path . ucfirst($this->name)  . DS;
-
-        dump($this->root);
+        $this->root = $path . DS . ucfirst($this->name) . DS;
 
         return $this;
     }
@@ -98,7 +96,7 @@ class FileDriver
 
         $drive = FileSystem::drive($name);
 
-        $drive->structure()->root($this->root);
+        $drive->structure()->root($this->rootPath());
         $drive->structure()->paths($this->paths);
         $drive->structure()->template($this->template);
 
