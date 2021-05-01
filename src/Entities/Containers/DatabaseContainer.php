@@ -90,13 +90,13 @@ class DatabaseContainer extends BaseContainer
     /**
      * Executa o migration do banco de dados do módulo
      *
-     * @return string
+     * @return bool
      */
     public function migrate() : bool
     {
         try 
         {
-            $path = $this->module()->migrationPath();
+            $path = $this->module()->migrationPath(); 
 
             Artisan::call('migrate', ['--path' => $path]);
             
@@ -108,9 +108,25 @@ class DatabaseContainer extends BaseContainer
         }
     }
 
-    private function migrationPath()
+    /**
+     * Exceuta o rollback dos migrations executados na base de dados
+     *
+     * @return boolean
+     */
+    public function rollback() : bool
     {
+        try 
+        {
+            $path = $this->module()->migrationPath(); 
 
+            Artisan::call('migrate:rollback', ['--path' => $path]);
+            
+            return true;
+        
+        } catch (\Exception $e) {
+            
+            return false;
+        }        
     }
 
     /**

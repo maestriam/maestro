@@ -140,7 +140,9 @@ class FileDriver
 
         $base = str_replace(base_path(), '', $this->rootPath());
 
-        return str_replace(DS, '/', $base . $sub);
+        $path = str_replace(DS, '/', $base . $sub);
+
+        return $path;
     }
 
     /**

@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MigrateCommand extends Command
+class MigrateRollbackCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:migrate {module}';
+    protected $signature = 'maestro:rollback {module}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Migrate tables for modules.';
+    protected $description = 'Rollback migrations for specific module.';
 
     /**
      * Create a new command instance.
@@ -40,7 +40,7 @@ class MigrateCommand extends Command
     public function handle()
     {
         $name = $this->argument('module');
-                
+        
         if ($name) {
             return $this->migrateModule($name);
         }
@@ -50,13 +50,13 @@ class MigrateCommand extends Command
     {
         $module = Maestro::module($name)->findOrFail();
 
-        $response = $module->database()->migrate();
+        $response = $module->database()->rollback();
     
         if ($response) {
-            return $this->info('Module migrated.');
+            return $this->info('Module rollback.');
         }
 
-        return $this->error('Error in migration.');
+        return $this->error('Error in rollback.');
     }
 
     /**

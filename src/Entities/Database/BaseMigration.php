@@ -2,6 +2,7 @@
 
 namespace Maestriam\Maestro\Entities\Database;
 
+use Illuminate\Support\Str;
 use Maestriam\Maestro\Entities\Source;
 
 abstract class BaseMigration extends Source
@@ -17,7 +18,7 @@ abstract class BaseMigration extends Source
     protected function toSnake(string $name) : string
     {
         $exp  = "%s_%s.php";
-        $now  = now()->format('Y_m_d_h_m_s');
+        $now  = now()->format('Y_m_d_hms');
         $name = preg_replace('/\B([A-Z])/', '_$1', $name);
 
         return strtolower(sprintf($exp, $now, $name));
@@ -42,7 +43,7 @@ abstract class BaseMigration extends Source
      */
     public function className() : string
     {
-        return ucfirst($this->className);
+        return Str::studly($this->className);
     }
 
     /**

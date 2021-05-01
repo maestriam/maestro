@@ -5,6 +5,7 @@ namespace Maestriam\Maestro\Providers;
 use Maestriam\Maestro\Entities\Maestro;
 use Nwidart\Modules\LaravelModulesServiceProvider;
 use Maestriam\Maestro\Console\MigrateCommand;
+use Maestriam\Maestro\Console\MigrateRollbackCommand;
 use Maestriam\Maestro\Console\CreateViewCommand;
 use Maestriam\Maestro\Console\CreateModelCommand;
 use Maestriam\Maestro\Console\CreateModuleCommand;
@@ -48,6 +49,9 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
         $config = __DIR__ . '/../Config/modules.php';
 
         $this->mergeConfigFrom($config, 'modules');
+
+        // dd(confi);
+
     }
 
     /**
@@ -77,6 +81,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateModelCommand::class,
             CreateMigrationCommand::class,
             MigrateCommand::class,
+            MigrateRollbackCommand::class
         ]);
     }
 
