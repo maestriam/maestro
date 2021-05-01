@@ -12,6 +12,7 @@ use Maestriam\Maestro\Console\CreateModuleCommand;
 use Maestriam\Maestro\Console\CreateControllerCommand;
 use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
+use Maestriam\Maestro\Console\CreateSeedCommand;
 
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
@@ -78,10 +79,11 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateModuleCommand::class,
             CreateViewCommand::class,
             CreateServiceProviderCommand::class,
+            CreateSeedCommand::class,
             CreateModelCommand::class,
             CreateMigrationCommand::class,
             MigrateCommand::class,
-            MigrateRollbackCommand::class
+            MigrateRollbackCommand::class,
         ]);
     }
 
