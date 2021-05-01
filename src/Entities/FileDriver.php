@@ -55,7 +55,7 @@ class FileDriver
     {
         $path = $this->config('root_folder');
 
-        $this->root = $path . DS . ucfirst($this->name) . DS;
+        $this->root = $path . ucfirst($this->name) . DS;
 
         return $this;
     }
@@ -137,12 +137,12 @@ class FileDriver
     public function migrationPath() : string
     {
         $sub = $this->config('migration_folder');
-
+        
         $base = str_replace(base_path(), '', $this->rootPath());
 
         $path = str_replace(DS, '/', $base . $sub);
-
-        return $path;
+        
+        return FileSystem::sanitize($path);
     }
 
     /**

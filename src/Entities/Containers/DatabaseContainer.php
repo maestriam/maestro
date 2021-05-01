@@ -103,7 +103,6 @@ class DatabaseContainer extends BaseContainer
             return true;
         
         } catch (\Exception $e) {
-            
             return false;
         }
     }
