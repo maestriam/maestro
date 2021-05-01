@@ -26,7 +26,7 @@ class Migrator
         {
             $path = $this->module->migrationPath();
 
-            Artisan::call('migrate-rollback', ['--path' => $path]);
+            Artisan::call('migrate:rollback', ['--path' => $path]);
             
             return true;
         

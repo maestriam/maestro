@@ -14,22 +14,15 @@ class MigratorTest extends TestCase
      *
      * @return void
      */
-    // public function testRollbackMigration()
-    // {        
-    //     $module = $this->initModule();
-
-    //     $migrator = new Migrator($module);
-
-    //     $ret = $migrator->rollback();
-    // }
-
-    public function testMigrateModule()
-    {
+    public function testRollbackMigration()
+    {        
         $module = $this->initModule();
 
-        
+        $migrator = new Migrator($module);
 
-        $ret = Artisan::call('migrate', ['--path' => 'sandbox/Phoenix/Database/Migrations/']);
+        $ret = $migrator->rollback();
+
+        $this->assertTrue($ret);
     }
 
     /**
@@ -41,7 +34,11 @@ class MigratorTest extends TestCase
     {
         $file = 'add_migration_file';
 
-        $module = $this->getModuleInstance('Phoenix');       
+        $module = $this->getModuleInstance('Phoenix')->create();
+
+        $module->database()->migration($file)->create();
+
+        $module->database()->migrate();
 
         return $module;
     }
