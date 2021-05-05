@@ -41,6 +41,11 @@ class DatabaseContainer extends BaseContainer
         return $seed->setClassName($name);
     }
 
+    public function seeders()
+    {
+        
+    }
+
     /**
      * Retorna uma instância para um migration
      *

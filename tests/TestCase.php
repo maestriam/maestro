@@ -51,6 +51,9 @@ class TestCase extends BaseTesCase
 
         $app['config']->set('Maestro:forge', [
             'maestro' => [
+                'folders' => [
+                    'seed' => 'Database/Seeders/'            
+                ],
                 'root_folder'      => __DIR__ . '/../sandbox/',
                 'template_folder'  => __DIR__ . '/../templates/',
                 'migration_folder' => 'Database/Migrations/',

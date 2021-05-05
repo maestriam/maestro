@@ -119,6 +119,16 @@ class Module implements ModuleInterface
     }
 
     /**
+     * Retorna o caminho dos arquivos de seeds do módulo
+     *
+     * @return string
+     */
+    public function seedPath() : string
+    {
+        return $this->drive->seedPath();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function lcname() : string

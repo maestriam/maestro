@@ -17,6 +17,11 @@ return [
 
     'maestro' => [
         
+
+        'folders' => [
+            'seed' => 'Database/Seeders/'            
+        ],
+
         /*
         |--------------------------------------------------------------------------
         | Diretório-raiz para criação de arquivos

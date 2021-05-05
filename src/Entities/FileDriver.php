@@ -146,6 +146,22 @@ class FileDriver
     }
 
     /**
+     * Retorna o caminho dos arquivos de seeds do módulo
+     *
+     * @return string
+     */
+    public function seedPath() : string 
+    {                
+        $sub = $this->config('folders.seed');
+
+        $base = str_replace(base_path(), '', $this->rootPath());
+
+        $path = str_replace(DS, '/', $base . $sub);
+        
+        return FileSystem::sanitize($path);
+    }
+
+    /**
      * Gera um nome para ser inserido no drive
      *
      * @return string
