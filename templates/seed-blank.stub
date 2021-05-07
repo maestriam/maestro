@@ -5,7 +5,7 @@ namespace {{namespace}}Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class {{classname}}TableSeeder extends Seeder
+class {{classname}}Seeder extends Seeder
 {
     /**
      * Run the database seeds.

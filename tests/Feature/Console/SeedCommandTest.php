@@ -8,16 +8,15 @@ class SeedCommandTest extends TestCase
 {
     public function testMigrateCmd()
     {
-        // $module = 'Canis';
+        $module  = 'Canis';  
+        $migrate = ['module' => $module, 'name' => 'AddMajorSirius'];
 
-        // $output = 'Module migrated.';
+        $this->artisan('maestro:migration', $migrate);
 
-        // $params = ['module' => $module, 'name' => 'AddMajorSirius'];
+        $params  = ['module' => $module];
+        $output  = 'Module migrated.';
+        $command = 'maestro:seed';
 
-        // $this->artisan('maestro:migration', $params);
-
-        // $this
-        //     ->artisan('maestro:seed', ['module' => $module])
-        //     ->expectsOutput($output);
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

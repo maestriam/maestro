@@ -4,6 +4,7 @@ namespace Maestriam\Maestro\Foundation\Database;
 
 use Illuminate\Support\Facades\Artisan;
 use Maestriam\Maestro\Entities\Module;
+use Maestriam\Maestro\Foundation\Registers\FileRegister;
 
 class Seeder
 {
@@ -17,21 +18,29 @@ class Seeder
     private function setModule(Module $module) : Seeder
     {
         $this->module = $module;
+
         return $this;
+    }
+
+    private function namespace() : string 
+    {
+        return 'Database\\Seeders\\';
     }
 
     public function root() : string
     {
-        $folder = $this->module->seedPath();
-        
-        $filename = $this->module->name() . 'Seeder.php';
+        $namespace = $this->module->namespace() . $this->namespace();
 
-        return $folder . $filename;
+        $class = $this->module->name() . 'Seeder';
+
+        return $namespace . $class;
     }
 
     public function seed() : bool
     {
         try {
+
+            FileRegister::from($this->module->seedPath());
 
             $seeder = $this->root();
 
@@ -39,7 +48,8 @@ class Seeder
             
             return true;
             
-        } catch (\Exception $e) {    
+        } catch (\Exception $e) {
+
             return false;
         }
     }

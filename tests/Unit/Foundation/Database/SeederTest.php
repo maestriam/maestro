@@ -3,48 +3,33 @@
 namespace Maestriam\Maestro\Tests\Unit\Foundation\Database;
 
 use Maestriam\Maestro\Tests\TestCase;
-use Maestriam\Maestro\Entities\Module;
 use Maestriam\Maestro\Foundation\Database\Seeder;
 
 class SeederTest extends TestCase
-{
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function testRootSeederPath()
-    {        
-        $module = $this->initModule();
-        
-        $seeder = new Seeder($module);
-
-        $path = $seeder->root();
-
-        $this->assertFileExists($path);
-    }
-
-    /**
-     * Verifica
-     *
-     * @return void
-     */
-    public function testSeedModule()
+{    
+    public function testSeedModuleWithSingleSeeder()
     {
-        $module = $this->initModule();
+        $module = $this->getModuleInstance('Phoenix')->create();
+
+        $module->create();
 
         $seeder = new Seeder($module);
 
-        // dd($seeder->seed());
+        $ret = $seeder->seed();
+
+        $this->assertTrue($ret);
     }
 
-    /**
-     * Retorna o módulo com migrations executados para testes de rollback
-     *
-     * @return void
-     */
-    private function initModule() : Module
+    public function testSeedModuleWithMultipleSeeders()
     {
-        return $this->getModuleInstance('Phoenix');
+        $module = $this->getModuleInstance('BlackPhoenix')->create();    
+
+        $module->database()->seeder('Ikki')->create();
+
+        $seeder = new Seeder($module);
+
+        $ret = $seeder->seed();
+
+        $this->assertTrue($ret);
     }
 }
