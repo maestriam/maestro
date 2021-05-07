@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Feature;
+namespace Maestriam\Maestro\Tests\Feature\Console;
 
 use Maestriam\Maestro\Tests\TestCase;
 
