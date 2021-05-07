@@ -22,9 +22,7 @@ class Seeder
 
     public function root() : string
     {
-        $folder = $this->module->seedPath();       
-        
-        dd($this->module->namespace());
+        $folder = $this->module->seedPath();
         
         $filename = $this->module->name() . 'Seeder.php';
 
@@ -42,9 +40,7 @@ class Seeder
             return true;
             
         } catch (\Exception $e) {    
-            dd($e);
             return false;
         }
-
     }
 }

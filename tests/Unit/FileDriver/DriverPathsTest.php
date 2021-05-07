@@ -61,14 +61,7 @@ class DriverPathsTest extends TestCase
      */
     public function testGluedRootPath()
     {
-        $this->getBaseFolderName();
-
-        $base =  '';
-        $name = 'Auriga';
-        
-        $driver = new FileDriver($name);
-        
-        $path = $driver->rootPath();
+        $base = config('Maestro:forge.maestro.root_folder');
 
         $isSeparator = $this->lastCharIsSeparator($base);
 
@@ -102,20 +95,4 @@ class DriverPathsTest extends TestCase
 
         return ($last == '/' || $last == '\\');
     }   
-    
-    /**
-     * Undocumented function
-     *
-     * @return string
-     */
-    private function getBaseFolderName() : string
-    {
-        $base = config('Maestro:forge.maestro.root_folder');
-
-        $pieces = explode('/', $base);
-
-        dd($pieces);
-
-        return '';
-    }
 }

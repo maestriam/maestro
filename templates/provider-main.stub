@@ -4,6 +4,7 @@ namespace {{namespace}}Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Maestriam\Maestro\Foundation\Registers\FileRegister;
 
 class {{uppername}}ServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,7 @@ class {{uppername}}ServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerSeeds();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
 
@@ -108,5 +110,14 @@ class {{uppername}}ServiceProvider extends ServiceProvider
             }
         }
         return $paths;
+    }
+
+    private function registerSeeds() : self
+    {
+        $path = __DIR__ . '/../Database/Seeders';
+
+        FileRegister::from($path);
+
+        return $this;
     }
 }

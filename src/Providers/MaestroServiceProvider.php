@@ -14,6 +14,7 @@ use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
 use Maestriam\Maestro\Console\CreateSeedCommand;
 use Maestriam\Maestro\Console\SeedCommand;
+use Maestriam\Maestro\Foundation\Registers\FileRegister;
 
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
@@ -25,9 +26,11 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
     public function boot()
     {
         parent::boot();
-        $this->registerConsts();
-        $this->registerCommands();
-        $this->registerFacade();    
+
+        $this
+            ->registerConsts()
+            ->registerCommands()
+            ->registerFacade();    
     }
 
     /**
@@ -58,11 +61,13 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
      *
      * @return void
      */
-    protected function registerFacade()
+    protected function registerFacade() : self
     {
         $this->app->bind('maestro',function() {
             return new Maestro($this->app);
-        });          
+        });   
+        
+        return $this;
     }
 
     /**
@@ -70,7 +75,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
      *
      * @return void
      */
-    private function registerCommands()
+    private function registerCommands() : self
     {
         $this->commands([
             CreateControllerCommand::class,
@@ -84,6 +89,8 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             MigrateRollbackCommand::class,
             SeedCommand::class,
         ]);
+
+        return $this;
     }
 
     /**
@@ -91,10 +98,12 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
      *
      * @return void
      */
-    private function registerConsts()
+    private function registerConsts() : self
     {        
         if (! defined('DS')) {
             define('DS', DIRECTORY_SEPARATOR);
         }
+
+        return $this;
     }
 }

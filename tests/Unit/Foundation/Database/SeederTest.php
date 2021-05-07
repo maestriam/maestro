@@ -35,7 +35,7 @@ class SeederTest extends TestCase
 
         $seeder = new Seeder($module);
 
-        dd($seeder->seed());
+        // dd($seeder->seed());
     }
 
     /**

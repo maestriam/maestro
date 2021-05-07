@@ -4,20 +4,20 @@ namespace Maestriam\Maestro\Tests\Feature;
 
 use Maestriam\Maestro\Tests\TestCase;
 
-class MigrateCommandTest extends TestCase
+class SeedCommandTest extends TestCase
 {
     public function testMigrateCmd()
     {
-        $module = 'Canis';
+        // $module = 'Canis';
 
-        $output = 'Module migrated.';
+        // $output = 'Module migrated.';
 
-        $params = ['module' => $module, 'name' => 'AddMajorSirius'];
+        // $params = ['module' => $module, 'name' => 'AddMajorSirius'];
 
-        $this->artisan('maestro:migration', $params);
+        // $this->artisan('maestro:migration', $params);
 
-        $this
-            ->artisan('maestro:migrate', ['module' => $module])
-            ->expectsOutput($output);
+        // $this
+        //     ->artisan('maestro:seed', ['module' => $module])
+        //     ->expectsOutput($output);
     }
 }
