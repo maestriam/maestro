@@ -2,6 +2,7 @@
 
 namespace Maestriam\Maestro\Foundation\Database;
 
+use Illuminate\Support\Facades\Artisan;
 use Maestriam\Maestro\Entities\Module;
 
 class Seeder
@@ -19,10 +20,31 @@ class Seeder
         return $this;
     }
 
-    public function scan()
+    public function root() : string
     {
-        $path = $this->module->seedPath();       
+        $folder = $this->module->seedPath();       
         
-        dd($path);
+        dd($this->module->namespace());
+        
+        $filename = $this->module->name() . 'Seeder.php';
+
+        return $folder . $filename;
+    }
+
+    public function seed() : bool
+    {
+        try {
+
+            $seeder = $this->root();
+
+            Artisan::call('db:seed', ['--class' => $seeder]);
+            
+            return true;
+            
+        } catch (\Exception $e) {    
+            dd($e);
+            return false;
+        }
+
     }
 }

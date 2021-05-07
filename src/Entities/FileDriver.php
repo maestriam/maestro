@@ -54,8 +54,8 @@ class FileDriver
     private function setRoot() : FileDriver
     {
         $path = $this->config('root_folder');
-
-        $this->root = $path . ucfirst($this->name) . DS;
+        
+        $this->root = $path . DS . ucfirst($this->name) . DS;
 
         return $this;
     }
@@ -136,13 +136,7 @@ class FileDriver
      */
     public function migrationPath() : string
     {
-        $sub = $this->config('migration_folder');
-        
-        $base = str_replace(base_path(), '', $this->rootPath());
-
-        $path = str_replace(DS, '/', $base . $sub);
-        
-        return FileSystem::sanitize($path);
+        return $this->generatePath('folders.migration');        
     }
 
     /**
@@ -151,8 +145,19 @@ class FileDriver
      * @return string
      */
     public function seedPath() : string 
-    {                
-        $sub = $this->config('folders.seed');
+    {                                   
+        return $this->generatePath('folders.seeder');
+    }
+    
+    /**
+     * Gera o caminho de a
+     *
+     * @param string $configKey
+     * @return string
+     */
+    private function generatePath(string $configKey) : string
+    {
+        $sub = $this->config($configKey);
 
         $base = str_replace(base_path(), '', $this->rootPath());
 

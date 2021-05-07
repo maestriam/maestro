@@ -19,7 +19,8 @@ return [
         
 
         'folders' => [
-            'seed' => 'Database/Seeders/'            
+            'seeder'    => 'Database/Seeders/',            
+            'migration' => 'Database/Migrations/',
         ],
 
         /*
@@ -33,7 +34,7 @@ return [
         |
         */
 
-        'root_folder' => base_path('maestro'),
+        'root_folder' => base_path('maestro') . '/',
         
         /*
         |--------------------------------------------------------------------------

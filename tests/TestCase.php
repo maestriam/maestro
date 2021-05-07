@@ -52,11 +52,11 @@ class TestCase extends BaseTesCase
         $app['config']->set('Maestro:forge', [
             'maestro' => [
                 'folders' => [
-                    'seed' => 'Database/Seeders/'            
+                    'seeder'   => 'Database/Seeders/',
+                    'migration' => 'Database/Migrations/',
                 ],
-                'root_folder'      => __DIR__ . '/../sandbox/',
-                'template_folder'  => __DIR__ . '/../templates/',
-                'migration_folder' => 'Database/Migrations/',
+                'root_folder'      => __DIR__ . '/../sandbox/', # __DIR__ . '/../sandbox/', # Talvez sempre colocar esse caminho dentro de base_path()?
+                'template_folder'  => __DIR__ . '/../templates/', # Talvez sempre colocar esse caminho dentro de base_path()?
                 'structure' => [            
                     'json-*'       => '.',
                     'provider-*'   => 'Providers/',

@@ -10,6 +10,7 @@ use Maestriam\Maestro\Entities\Database\BaseMigration;
 use Maestriam\Maestro\Entities\Database\BlankMigration;
 use Maestriam\Maestro\Entities\Database\MainMigration;
 use Maestriam\Maestro\Entities\Model\BlankModel;
+use Maestriam\Maestro\Foundation\Database\Seeder;
 
 class DatabaseContainer extends BaseContainer
 {
@@ -36,11 +37,17 @@ class DatabaseContainer extends BaseContainer
     public function seeder(string $name) : BlankSeed
     {
         $module = $this->module();
+        
         $seed = new BlankSeed($module);    
 
         return $seed->setClassName($name);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function seeders()
     {
         
@@ -131,6 +138,15 @@ class DatabaseContainer extends BaseContainer
             
             return false;
         }        
+    }
+
+    public function seed() : bool
+    {
+        $module  = $this->module();
+
+        $seeder = new Seeder($module);
+
+        return $seeder->seed();
     }
 
     /**

@@ -13,6 +13,7 @@ use Maestriam\Maestro\Console\CreateControllerCommand;
 use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
 use Maestriam\Maestro\Console\CreateSeedCommand;
+use Maestriam\Maestro\Console\SeedCommand;
 
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
@@ -50,9 +51,6 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
         $config = __DIR__ . '/../Config/modules.php';
 
         $this->mergeConfigFrom($config, 'modules');
-
-        // dd(confi);
-
     }
 
     /**
@@ -84,6 +82,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             CreateMigrationCommand::class,
             MigrateCommand::class,
             MigrateRollbackCommand::class,
+            SeedCommand::class,
         ]);
     }
 

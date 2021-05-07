@@ -14,7 +14,7 @@ class Module implements ModuleInterface
 {    
     use ManagesContainers, ActivesModule;
 
-    /**
+    /** 
      * Nome do módulo
      */
     private string $name;
