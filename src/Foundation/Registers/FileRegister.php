@@ -14,7 +14,7 @@ abstract class FileRegister
         
         foreach (glob($path ."*.php") as $filename)
         { 
-            include($filename);                
+            include_once($filename);                
         }
     }
 }

@@ -9,13 +9,12 @@ class SeedCommandTest extends TestCase
     public function testMigrateCmd()
     {
         $module  = 'Canis';  
-        $migrate = ['module' => $module, 'name' => 'AddMajorSirius'];
-
-        $this->artisan('maestro:migration', $migrate);
-
-        $params  = ['module' => $module];
-        $output  = 'Module migrated.';
+        $output  = 'Module seeded.';
+        
+        $this->artisan('maestro:module', ['name' => $module]);
+        
         $command = 'maestro:seed';
+        $params  = ['module' => $module];        
 
         $this->artisan($command, $params)->expectsOutput($output);
     }

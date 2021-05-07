@@ -26,7 +26,7 @@ class Seeder
     {
         return 'Database\\Seeders\\';
     }
-
+    
     public function root() : string
     {
         $namespace = $this->module->namespace() . $this->namespace();
@@ -40,9 +40,11 @@ class Seeder
     {
         try {
 
-            FileRegister::from($this->module->seedPath());
-
             $seeder = $this->root();
+
+            if (! class_exists($seeder)) {
+                FileRegister::from($this->module->seedPath());
+            }
 
             Artisan::call('db:seed', ['--class' => $seeder]);
             

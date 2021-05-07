@@ -44,16 +44,6 @@ class DatabaseContainer extends BaseContainer
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function seeders()
-    {
-        
-    }
-
-    /**
      * Retorna uma instância para um migration
      *
      * @param string $name
@@ -140,9 +130,14 @@ class DatabaseContainer extends BaseContainer
         }        
     }
 
+    /**
+     * Executa as classes de população das tabelas do módulo
+     *
+     * @return boolean
+     */
     public function seed() : bool
     {
-        $module  = $this->module();
+        $module = $this->module();
 
         $seeder = new Seeder($module);
 
