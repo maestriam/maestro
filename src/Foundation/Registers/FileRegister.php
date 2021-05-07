@@ -2,13 +2,15 @@
 
 namespace Maestriam\Maestro\Foundation\Registers;
 
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Request;
+use Maestriam\Maestro\Exceptions\InvalidPathToRegisterFileException;
 
 abstract class FileRegister
 {
     static public function from(string $path)
-    {                
+    {        
+        if (! is_dir($path)) {
+            throw new InvalidPathToRegisterFileException($path);
+        }
         
         foreach (glob($path ."*.php") as $filename)
         { 

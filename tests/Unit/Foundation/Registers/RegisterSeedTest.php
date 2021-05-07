@@ -2,16 +2,14 @@
 
 namespace Maestriam\Maestro\Tests\Unit\Foundation\Registers;
 
-use Illuminate\Support\Facades\Artisan;
 use Maestriam\Maestro\Tests\TestCase;
-use Maestriam\Maestro\Entities\Module;
-use Maestriam\Maestro\Foundation\Database\Seeder;
 use Maestriam\Maestro\Foundation\Registers\FileRegister;
+use Maestriam\Maestro\Exceptions\InvalidPathToRegisterFileException;
 
 class RegisterSeedTest extends TestCase
 {
     /**
-     * Undocumented function
+     * Importa arquivos PHP dentro de um diretório do módulo
      *
      * @return void
      */
@@ -26,10 +24,15 @@ class RegisterSeedTest extends TestCase
         $this->assertNull($ret);
     }
 
+    /**
+     * Importa arquivos PHP dentro de um diretório inválido
+     *
+     * @return void
+     */
     public function testRegisterInvalidPath()
     {
-        $ret = FileRegister::from('invalid-path');
+        $this->expectException(InvalidPathToRegisterFileException::class);
 
-        $this->assertNull($ret);
+        FileRegister::from('invalid-path-to-crash-application');
     }
 }
