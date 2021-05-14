@@ -74,16 +74,18 @@ return [
         */
 
         'structure' => [            
-            'json-*'       => '.',
-            'provider-*'   => 'Providers/',            
-            'route.*'      => 'Routes/',
-            'controller-*' => 'Http/Controllers/',
-            'file-config'  => 'Config/',
-            'view-*'       => 'Resources/views/',
-            'model-*'      => 'Entities/',
-            'migration-*'  => 'Database/Migrations/',
-            'seed-*'       => 'Database/Seeders/',
-            'factory-*'    => 'Database/Factories/'
+            'json-*'        => '.',
+            'provider-*'    => 'Providers/',            
+            'route.*'       => 'Routes/',
+            'controller-*'  => 'Http/Controllers/',
+            'file-config'   => 'Config/',
+            'view-*'        => 'Resources/views/',
+            'model-*'       => 'Entities/',
+            'migration-*'   => 'Database/Migrations/',
+            'seed-*'        => 'Database/Seeders/',
+            'factory-*'     => 'Database/Factories/',
+            'test-unit'     => 'Tests/Unit/',
+            'test-feature'  => 'Tests/Feature/',
         ]
     ]
 ];
