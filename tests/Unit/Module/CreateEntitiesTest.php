@@ -43,10 +43,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->controller()
-                    ->main()
-                    ->create();
+        $file = $module->controller()->main()->create();
 
         $this->assertContentHasParsed($file);
     }
@@ -61,10 +58,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->route()
-                    ->web()
-                    ->create();
+        $file = $module->route()->web()->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -79,10 +73,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->route()
-                    ->api()
-                    ->create();
+        $file = $module->route()->api()->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -97,9 +88,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->configFile()
-                    ->create();
+        $file = $module->configFile()->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -114,10 +103,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->provider()
-                    ->main()
-                    ->create();
+        $file = $module->provider()->main()->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -132,10 +118,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->provider()
-                    ->blank('Ikki')
-                    ->create();
+        $file = $module->provider()->blank('Ikki')->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -150,10 +133,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->provider()
-                    ->route()
-                    ->create();
+        $file = $module->provider()->route()->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -168,10 +148,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->json()
-                    ->moduleFile()
-                    ->create();
+        $file = $module->json()->moduleFile()->create();
         
         $this->assertContentHasParsed($file, true);
     }
@@ -186,10 +163,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->resource()
-                    ->view('Ikki')
-                    ->create();
+        $file = $module->resource()->view('Ikki')->create();
         
         $this->assertContentHasParsed($file);
     }
@@ -204,10 +178,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->json()
-                    ->composerFile()
-                    ->create();
+        $file = $module->json()->composerFile()->create();
         
         $this->assertContentHasParsed($file, true);
     }
@@ -240,10 +211,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->database()
-                    ->model('Ikki')
-                    ->create();
+        $file = $module->database()->model('Ikki')->create();
         
         $this->assertContentHasParsed($file, true);
     }

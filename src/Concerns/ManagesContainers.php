@@ -9,6 +9,7 @@ use Maestriam\Maestro\Entities\Containers\JsonFilesContainer;
 use Maestriam\Maestro\Entities\Containers\ProviderContainer;
 use Maestriam\Maestro\Entities\Containers\ResourceContainer;
 use Maestriam\Maestro\Entities\Containers\RouteContainer;
+use Maestriam\Maestro\Entities\Containers\TestContainer;
 
 /**
  * Retorna as instância para manipulação de arquivos dentro do módulo
@@ -83,5 +84,15 @@ trait ManagesContainers
     public function database() : DatabaseContainer
     {
         return new DatabaseContainer($this);
+    }
+
+    /**
+     * Retorna a instância de controle de testes do módulo
+     *
+     * @return TestContainer
+     */
+    public function tests() : TestContainer
+    {
+        return new TestContainer($this);
     }
 }

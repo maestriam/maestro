@@ -26,8 +26,8 @@ class TestCase extends BaseTesCase
     protected function getPackageProviders($app) : array
     {
         return [
-            MaestroServiceProvider::class,
             FileSystemProvider::class,
+            MaestroServiceProvider::class,
         ];
     }
 
@@ -67,7 +67,9 @@ class TestCase extends BaseTesCase
                     'model-*'      => 'Entities/',
                     'migration-*'  => 'Database/Migrations/',
                     'seed-*'       => 'Database/Seeders/',
-                    'factory-*'    => 'Database/Factories/'
+                    'factory-*'    => 'Database/Factories/',
+                    'test-unit'    => 'Tests/Unit/',
+                    'test-feature' => 'Tests/Feature/',
                 ]
             ]
         ]);

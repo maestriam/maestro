@@ -163,7 +163,7 @@ class FileDriver
 
         $path = str_replace(DS, '/', $base . $sub);
         
-        return FileSystem::sanitize($path);
+        return FileSystem::folder($path)->sanitize();
     }
 
     /**

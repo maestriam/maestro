@@ -62,9 +62,8 @@ class FileSystem
         $template = $this->source->template();        
         $content  = $this->source->placeholders();
 
-        $drive = $this->source->module()->drive();
-
-        $file = $drive->template($template);
+        $drive = $this->source->module()->drive();        
+        $file  = $drive->template($template);
         
         return $file->create($filename, $content);
     }
