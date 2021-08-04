@@ -1,61 +1,19 @@
 <p align="center">
-    <img width="256" src="imgs/samurai.png">
+    <img width="256" src="imgs/maestro.png" alt="maestriam/maestro logo">
 </p>
 
-<p align="center"><b>Create awsome themes for your Laravel projects.</b></p>
+<h1 align="center">🎵 maestriam/maestro</h1>
 
 
-# 🔴 Maestriam/Maestro
+<p align="center">
+  Create and manage awesome modules for your Laravel projects.
+</p>
+<br>
 
-* [Getting started](#facades-methods)
-    * [Facades methods](#facades-methods)
-* [Facades methods](#facades-methods)
-* [Facades methods](#facades-methods)
-        * [Facades methods](#facades-methods)
-* [Facades methods](#facades-methods)
+<span align="center">
 
+![Travis (.com)](https://img.shields.io/travis/com/maestriam/maestro?style=flat-square)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/maestriam/maestro/master?style=flat-square)](https://scrutinizer-ci.com/g/maestriam/maestro/?branch=master)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/maestriam/filesystem?style=flat-square)
 
-## Getting start
-
-
-## Facades methods
-
-**Create a new module.**
-```php
-Maestro::module('Bloomberg')->create(); // returns Module instance 
-```
-
-**Check if a module exists.**
-```php
-Maestro::module('Bloomberg')->exists(); // returns bool
-```
-
-**Find a module in vendor folder.**
-```php
-Maestro::module('Bloomberg')->find(); // returns Module instance or null
-```
-
-**Search a module with specific name. If doesn't find, create module.***
-```php
-Maestro::module('Bloomberg')->findOrCreate(); // returns Module instance
-```
-
-**Search a module with specific name. If doesn't find, create module.***
-```php
-Maestro::module('Bloomberg')->findOrFail(); // returns Module instance or throw exeception
-```
-
-**Enable specific module.**
-```php
-Maestro::module('Bloomberg')->enable(); // returns bool
-```
-
-**Disable specific module.**
-```php
-Maestro::module('Bloomberg')->disable(); // returns bool
-```
-
-**Returns all modules created in project**
-```php
-Maestro::all(); // returns array
-```
+</span>
