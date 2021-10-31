@@ -12,13 +12,14 @@ class FileDriver
 
     private string $key = 'Maestro:forge.maestro.';
 
-    public function __construct(string $name)
+    public function __construct(string $name = null)
     {
-        $this->setName($name)
-             ->setTemplate()
-             ->setRoot()
-             ->setPaths()
-             ->init();
+        $this
+            ->setName($name)
+            ->setTemplate()
+            ->setRoot()
+            ->setPaths()
+            ->init();
     }
 
     /**

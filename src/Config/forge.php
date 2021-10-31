@@ -75,7 +75,8 @@ return [
 
         'structure' => [            
             'json-*'        => '.',
-            'provider-*'    => 'Providers/',            
+            'readme'        => '.',
+            'provider-*'    => 'Providers/',
             'route.*'       => 'Routes/',
             'controller-*'  => 'Http/Controllers/',
             'file-config'   => 'Config/',

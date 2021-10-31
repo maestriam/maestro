@@ -8,7 +8,7 @@ use Maestriam\Maestro\Tests\TestCase;
 class DriverPathsTest extends TestCase
 {
     /**
-     * Verifica se retorna o caminho dos diretórios do seeders corretament
+     * Verifica se retorna o caminho dos diretórios do seeders corretamente
      *
      * @return void
      */
