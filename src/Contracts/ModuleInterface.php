@@ -60,11 +60,28 @@ interface ModuleInterface
     public function path() : string;
 
     /**
+     * Retorna as informações do módulo, 
+     * vindas do arquivo module.json
+     *
+     * @return array
+     */
+    public function info() : object;
+
+    /**
      * Verifica se o módulo existe.
      *
      * @return boolean
      */
-    //public function exists() : bool;
+    public function exists() : bool;
+
+    /**
+     * Tenta encontrar um módulo com um nome específico.
+     * Caso não encontre, retorna uma exception informando que não 
+     * foi encontrado.
+     *
+     * @return  Module 
+     */
+    public function findOrFail() : Module;    
 
     /**
      * Tenta encontrar um módulo com um nome específico
@@ -94,11 +111,4 @@ interface ModuleInterface
      * @return boolean
      */
     // public function disable() : bool;
-
-    /**
-     * Retorna as informações básicas do módulo
-     *
-     * @return array
-     */
-    // public function info() : array;
 }

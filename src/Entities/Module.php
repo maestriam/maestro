@@ -205,4 +205,18 @@ class Module implements ModuleInterface
 
         return $this;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function info() : object
+    {
+        $path = $this->path() . 'module.json';
+
+        $content = file_get_contents($path);
+
+        $info = (object) json_decode($content);
+
+        return $info;
+    }
 }
