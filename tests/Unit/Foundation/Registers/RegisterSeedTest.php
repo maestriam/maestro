@@ -9,13 +9,13 @@ use Maestriam\Maestro\Exceptions\InvalidPathToRegisterFileException;
 class RegisterSeedTest extends TestCase
 {
     /**
-     * Importa arquivos PHP dentro de um diretório do módulo
+     * Importa arquivos PHP dentro de um diretório do módulo.  
      *
      * @return void
      */
     public function testValidPath()
     {        
-        $module = $this->getModuleInstance('Phoenix');
+        $module = $this->getModuleInstance('Phoenix')->create();
         
         $path = $module->seedPath();
 
@@ -25,7 +25,7 @@ class RegisterSeedTest extends TestCase
     }
 
     /**
-     * Importa arquivos PHP dentro de um diretório inválido
+     * Importa arquivos PHP dentro de um diretório inválido.  
      *
      * @return void
      */

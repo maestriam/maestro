@@ -1,6 +1,6 @@
 <?php
 
-namespace Maestriam\Maestro\Tests\Unit\Config;
+namespace Maestriam\Maestro\Tests\Unit\Container;
 
 use Maestriam\Maestro\Entities\Containers\ModuleContainer;
 use Maestriam\Maestro\Entities\Module;
@@ -15,6 +15,8 @@ class ModuleContainerTest extends TestCase
 
     public function testGetAllModules()
     {
+        $this->getModuleInstance('Kraken')->create();
+
         $collection = new ModuleContainer($this->app);
 
         $modules = $collection->all();        

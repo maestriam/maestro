@@ -5,6 +5,7 @@ namespace Maestriam\Maestro\Tests;
 use Maestriam\Maestro\Entities\Module;
 use Orchestra\Testbench\TestCase as BaseTesCase;
 use Maestriam\FileSystem\Providers\FileSystemProvider;
+use Maestriam\FileSystem\Support\FileSystem;
 use Maestriam\Maestro\Providers\MaestroServiceProvider;
 
 class TestCase extends BaseTesCase
@@ -14,7 +15,38 @@ class TestCase extends BaseTesCase
      */
     public function setUp() : void
     {
-        parent::setUp();
+        parent::setUp();    
+        $this->initSandBox();
+    }
+
+    public function tearDown() : void
+    {
+        $this->clearSandBox();
+        parent::tearDown();
+    }
+
+    /**
+     * Cria um novo diretório para testes
+     *
+     * @return void
+     */
+    protected function initSandBox()
+    {
+        $sandbox = config('Maestro:forge.maestro.root_folder');
+        
+        FileSystem::folder($sandbox)->create();
+    }
+
+    /**
+     * Remove o diretório de conteúdo de testes
+     *
+     * @return void
+     */
+    protected function clearSandBox($folder = null)
+    {
+        $sandbox = config('Maestro:forge.maestro.root_folder');
+        
+        FileSystem::folder($sandbox)->delete();
     }
 
     /**

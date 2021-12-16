@@ -8,6 +8,7 @@ use Maestriam\Maestro\Entities\FileDriver;
 use Maestriam\Maestro\Concerns\ActivesModule;
 use Maestriam\Maestro\Concerns\ManagesContainers;
 use Maestriam\Maestro\Contracts\ModuleInterface;
+use Maestriam\Maestro\Exceptions\ModuleAlreadyExistsException;
 use Maestriam\Maestro\Exceptions\ModuleNotFoundException;
 
 class Module implements ModuleInterface
@@ -167,6 +168,10 @@ class Module implements ModuleInterface
      */
     public function create() : Module
     {
+        if ($this->exists()) {
+            throw new ModuleAlreadyExistsException($this->name());
+        }
+
         $this->json()->init();
         $this->route()->init();
         $this->resource()->init();

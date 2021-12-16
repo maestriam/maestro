@@ -16,7 +16,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo controller em branco
      *
      * @return void
@@ -34,7 +34,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo controller em branco
      *
      * @return void
@@ -49,7 +49,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um nova rota web
      *
      * @return void
@@ -64,7 +64,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um nova rota web
      *
      * @return void
@@ -79,7 +79,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo arquivo de configuração
      *
      * @return void
@@ -94,7 +94,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo service provider principal
      *
      * @return void
@@ -109,8 +109,8 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
-     * um novo service provider em branco
+     * Testa se, através do objeto de módulo, consegue criar 
+     * um novo service provider em branco.  
      *
      * @return void
      */
@@ -124,8 +124,8 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
-     * um novo service provider de rotas
+     * Testa se, através do objeto de módulo, consegue criar 
+     * um novo service provider de rotas.  
      *
      * @return void
      */
@@ -139,7 +139,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo service provider principal
      *
      * @return void
@@ -154,7 +154,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo service provider principal
      *
      * @return void
@@ -169,7 +169,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * um novo service provider principal
      *
      * @return void
@@ -184,7 +184,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * uma nova factory
      *
      * @return void
@@ -202,7 +202,7 @@ class CreateEntitiesTest extends TestCase
     }
 
     /**
-     * Testa se através do objeto de módulo consegue criar 
+     * Testa se, através do objeto de módulo, consegue criar 
      * uma nova factory
      *
      * @return void

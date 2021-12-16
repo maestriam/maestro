@@ -11,8 +11,6 @@ class SeederTest extends TestCase
     {
         $module = $this->getModuleInstance('Phoenix')->create();
 
-        $module->create();
-
         $seeder = new Seeder($module);
 
         $ret = $seeder->seed();
