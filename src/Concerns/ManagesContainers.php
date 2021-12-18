@@ -10,6 +10,7 @@ use Maestriam\Maestro\Entities\Containers\ProviderContainer;
 use Maestriam\Maestro\Entities\Containers\ResourceContainer;
 use Maestriam\Maestro\Entities\Containers\RouteContainer;
 use Maestriam\Maestro\Entities\Containers\TestContainer;
+use Maestriam\Maestro\Exceptions\ModuleNotFoundException;
 
 /**
  * Retorna as instância para manipulação de arquivos dentro do módulo
@@ -33,6 +34,10 @@ trait ManagesContainers
      */
     public function controller() : ControllerContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new ControllerContainer($this);
     } 
 
@@ -42,7 +47,7 @@ trait ManagesContainers
      * @return \Maestriam\Maestro\Entities\Containers\JsonFilesContainer
      */
     public function json() : JsonFilesContainer
-    {
+    {        
         return new JsonFilesContainer($this);
     }
 
@@ -53,6 +58,10 @@ trait ManagesContainers
      */
     public function provider() : ProviderContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new ProviderContainer($this);
     } 
 
@@ -63,6 +72,10 @@ trait ManagesContainers
      */
     public function resource() : ResourceContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new ResourceContainer($this);
     }  
 
@@ -73,6 +86,10 @@ trait ManagesContainers
      */
     public function route() : RouteContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new RouteContainer($this);
     }
 
@@ -83,6 +100,10 @@ trait ManagesContainers
      */
     public function database() : DatabaseContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new DatabaseContainer($this);
     }
 
@@ -93,6 +114,10 @@ trait ManagesContainers
      */
     public function tests() : TestContainer
     {
+        if (! $this->exists()) {
+            throw new ModuleNotFoundException($this->name());
+        }
+
         return new TestContainer($this);
     }
 }

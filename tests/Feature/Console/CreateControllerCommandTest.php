@@ -7,13 +7,15 @@ use Maestriam\Maestro\Tests\TestCase;
 class CreateControllerCommandTest extends TestCase
 {
     public function testCreateControllerCmd()
-    {
+    {        
+        $module  = 'Swan';
+        $command = 'maestro:controller';
+
+        $this->getModuleInstance($module)->create();
+        
         $output = 'Controller created.';
+        $params = ['name' => 'Hyoga', 'module' => $module];
 
-        $parameters = ['name' => 'Hyoga', 'module' => 'Swan'];
-
-        $this
-            ->artisan('maestro:controller', $parameters)
-            ->expectsOutput($output);
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

@@ -8,12 +8,14 @@ class CreateModelCommandTest extends TestCase
 {
     public function testCreateModelCmd()
     {
-        $output = 'Model created.'; 
+        $module  = 'Heracles';
+        $output  = 'Model created.';
+        $command = 'maestro:model';
 
-        $parameters = ['name' => 'Algethi', 'module' => 'Heracles'];
+        $this->getModuleInstance($module)->create();
 
-        $this
-            ->artisan('maestro:model', $parameters)
-            ->expectsOutput($output);
+        $params = ['name' => 'Algethi', 'module' => $module];
+
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

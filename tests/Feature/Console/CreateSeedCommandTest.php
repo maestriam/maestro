@@ -8,12 +8,14 @@ class CreateSeedCommandTest extends TestCase
 {
     public function testCreateSeedCmd()
     {
-        $output = 'Seeder created.'; 
+        $module = 'Hercules';
 
+        $this->getModuleInstance($module)->create();
+
+        $output = 'Seeder created.';
         $command = 'maestro:seeder';
+        $params = ['name' => 'Algethi', 'module' => $module];
 
-        $parameters = ['name' => 'Algethi', 'module' => 'Olaf'];
-
-        $this->artisan($command, $parameters)->expectsOutput($output);
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

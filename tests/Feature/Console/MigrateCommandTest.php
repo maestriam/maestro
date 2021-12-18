@@ -8,13 +8,16 @@ class MigrateCommandTest extends TestCase
 {
     public function testMigrateCmd()
     {
-        $module = 'Canis';
-
-        $params = ['module' => $module, 'name' => 'AddMajorSirius'];
-
-        $this->artisan('maestro:migration', $params);
-
-        $this->artisan('maestro:migrate', ['module' => $module])
-             ->expectsOutput('Module migrated.');
+        $module  = 'Canis';
+        $command = 'maestro:migrate';        
+        $output  = 'Module migrated.';
+        
+        $this->getModuleInstance($module)->create();
+        
+        $create  = ['module' => $module, 'name' => 'AddMajorSirius'];
+        $migrate = ['module' => $module];
+        
+        $this->artisan('maestro:migration', $create);
+        $this->artisan($command, $migrate)->expectsOutput($output);
     }
 }

@@ -4,6 +4,12 @@ All Notable changes to `maestriam/maestro` will be documented in this file.
 
 ## Next
 
+## 1.2.2 - 2021-12
+
+### Fixed
+- Error to creating entities in a inexisting module
+- Error to creating a existing module
+
 ## 1.0.0 - 2021-07
 
 ### Added

@@ -3,7 +3,6 @@
 namespace Maestriam\Maestro\Tests\Unit\Controllers;
 
 use Maestriam\Maestro\Tests\TestCase;
-use Maestriam\Maestro\Entities\Controllers\BlankController;
 use Maestriam\Maestro\Entities\Controllers\MainController;
 
 class CreateMainControllerTest extends TestCase

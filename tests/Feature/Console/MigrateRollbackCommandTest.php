@@ -10,6 +10,8 @@ class MigrateRollbackCommandTest extends TestCase
     {
         $module = 'Canis';
 
+        $this->getModuleInstance($module)->create();
+
         $message = 'Module rollback.';
         $execute = ['module' => $module];
         $migrate = ['module' => $module, 'name' => 'AddMajorSirius'];

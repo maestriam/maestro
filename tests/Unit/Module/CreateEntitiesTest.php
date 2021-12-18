@@ -3,6 +3,7 @@
 namespace Maestriam\Maestro\Tests\Unit\Modules;
 
 use Maestriam\Maestro\Entities\Module;
+use Maestriam\Maestro\Exceptions\ModuleNotFoundException;
 use Maestriam\Maestro\Tests\TestCase;
 
 class CreateEntitiesTest extends TestCase
@@ -193,10 +194,7 @@ class CreateEntitiesTest extends TestCase
     {
         $module = $this->getModule();
 
-        $file = $module
-                    ->database()
-                    ->factory('Ikki')
-                    ->create();
+        $file = $module->database()->factory('Ikki')->create();
         
         $this->assertContentHasParsed($file, true);
     }
@@ -224,6 +222,21 @@ class CreateEntitiesTest extends TestCase
      */
     protected function getModule() : Module
     {
-        return $this->getModuleInstance('Phoenix');
+        return $this->getModuleInstance('Phoenix')->create();
+    }
+
+    /**
+     * Testa se retorna um exception ao tentar criar um controller
+     * em um módulo inexistente
+     *
+     * @return void
+     */
+    public function createControllerWithInvalidModule()
+    {
+        $module = new Module('not/exists', $this->app);
+
+        $this->expectException(ModuleNotFoundException::class);
+
+        $module->controller()->blank('NotExists')->create();
     }
 }

@@ -8,15 +8,17 @@ class CreateMigrationCommandTest extends TestCase
 {
     public function testCreateMigrationCmd()
     {
-        $output = 'Migration created.';
+        $module  = 'Hound';
+        $command = 'maestro:migration';
+        $output  = 'Migration created.';
 
-        $parameters = [
-            'module' => 'Hound',
-            'name'   => 'AddHoundAsterion', 
+        $this->getModuleInstance($module)->create();
+
+        $params = [
+            'module' => $module, 
+            'name'   => 'AddHoundAsterion'
         ];
 
-        $this
-            ->artisan('maestro:migration', $parameters)
-            ->expectsOutput($output);
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }

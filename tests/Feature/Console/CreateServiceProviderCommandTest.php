@@ -8,11 +8,14 @@ class CreateServiceProviderCommandTest extends TestCase
 {
     public function testCreateControllerCmd()
     {
-        $parameters = ['name' => 'Shiryu', 'module' => 'Dragon'];
+        $module  = 'Dragon';
+        $command = 'maestro:provider';
+        $output  = 'Service provider created.';
 
-        $output = 'Service provider created.';
+        $this->getModuleInstance($module)->create();
 
-        $this->artisan('maestro:provider', $parameters)
-             ->expectsOutput($output);
+        $params = ['name' => 'Shiryu', 'module' => $module];
+
+        $this->artisan($command, $params)->expectsOutput($output);
     }
 }
