@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputArgument;
 
-class PublishMCommand extends Command
+class PublishModuleCommand extends Command
 {
     /**
      * The name and signature of the console command.

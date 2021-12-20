@@ -196,8 +196,8 @@ class Module implements ModuleInterface
     {
         $from = $this->assetsPath();
 
-        $destination = 'modules' . DS . $this->lcname() . DS . 'assets';
-
+        $destination = 'maestro' . DS . $this->lcname() . DS;
+        
         $to = public_path($destination);
 
         File::copyDirectory($from, $to);

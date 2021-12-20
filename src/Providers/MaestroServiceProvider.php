@@ -14,7 +14,7 @@ use Maestriam\Maestro\Console\CreateMigrationCommand;
 use Maestriam\Maestro\Console\CreateServiceProviderCommand;
 use Maestriam\Maestro\Console\CreateSeedCommand;
 use Maestriam\Maestro\Console\SeedCommand;
-use Maestriam\Maestro\Foundation\Registers\FileRegister;
+use Maestriam\Maestro\Console\PublishModuleCommand;
 
 class MaestroServiceProvider extends LaravelModulesServiceProvider
 {
@@ -88,6 +88,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             MigrateCommand::class,
             MigrateRollbackCommand::class,
             SeedCommand::class,
+            PublishModuleCommand::class
         ]);
 
         return $this;
