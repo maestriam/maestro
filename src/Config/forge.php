@@ -21,6 +21,7 @@ return [
         'folders' => [
             'seeder'    => 'Database/Seeders/',            
             'migration' => 'Database/Migrations/',
+            'assets'    => 'Resources/assets/'
         ],
 
         /*
@@ -49,8 +50,6 @@ return [
         */
 
         'template_folder' => __DIR__ . '/../../templates/',
-
-
 
         'migration_folder' => 'Database/Migrations/',
         

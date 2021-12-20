@@ -149,6 +149,11 @@ class FileDriver
     {                                   
         return $this->generatePath('folders.seeder');
     }
+
+    public function assetsPath() : string
+    {
+        return $this->generatePath('folders.assets');
+    }
     
     /**
      * Gera o caminho de a

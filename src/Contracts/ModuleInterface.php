@@ -81,7 +81,21 @@ interface ModuleInterface
      *
      * @return  Module 
      */
-    public function findOrFail() : Module;    
+    public function findOrFail() : Module;
+
+    /**
+     * Retorna o caminho dos arquivos de migration do módulo
+     *
+     * @return string
+     */
+    public function migrationPath() : string;
+    
+    /**
+     * Retorna o caminho dos arquivos de assets (js/css/img) do módulo.  
+     *
+     * @return string
+     */
+    public function assetsPath() : string;
 
     /**
      * Tenta encontrar um módulo com um nome específico

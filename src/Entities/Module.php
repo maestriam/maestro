@@ -3,6 +3,7 @@
 namespace Maestriam\Maestro\Entities;
 
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\File;
 use Maestriam\FileSystem\Foundation\Drive;
 use Maestriam\Maestro\Entities\FileDriver;
 use Maestriam\Maestro\Concerns\ActivesModule;
@@ -132,6 +133,14 @@ class Module implements ModuleInterface
     /**
      * {@inheritDoc}
      */
+    public function assetsPath() : string
+    {
+        return $this->drive->assetsPath();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function lcname() : string
     {
         return strtolower($this->name);
@@ -181,6 +190,19 @@ class Module implements ModuleInterface
         $this->database()->init();
         
         return $this;
+    }
+
+    public function publishAssets() : bool
+    {
+        $from = $this->assetsPath();
+
+        $destination = 'modules' . DS . $this->lcname() . DS . 'assets';
+
+        $to = public_path($destination);
+
+        File::copyDirectory($from, $to);
+
+        return (is_dir($to)) ? true : false;
     }
     
     /**

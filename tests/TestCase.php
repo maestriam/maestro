@@ -86,6 +86,7 @@ class TestCase extends BaseTesCase
                 'folders' => [
                     'seeder'   => 'Database/Seeders/',
                     'migration' => 'Database/Migrations/',
+                    'assets'    => 'Resources/'
                 ],
                 'root_folder'      => __DIR__ . '/../sandbox/', # __DIR__ . '/../sandbox/', # Talvez sempre colocar esse caminho dentro de base_path()?
                 'template_folder'  => __DIR__ . '/../templates/', # Talvez sempre colocar esse caminho dentro de base_path()?
@@ -96,6 +97,7 @@ class TestCase extends BaseTesCase
                     'controller-*' => 'Http/Controllers/',
                     'file-config'  => 'Config/',
                     'view-*'       => 'Resources/views/',
+                    'assets'       => 'Resources/assets/',     
                     'model-*'      => 'Entities/',
                     'migration-*'  => 'Database/Migrations/',
                     'seed-*'       => 'Database/Seeders/',
