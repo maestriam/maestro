@@ -14,12 +14,11 @@ class FileDriver
 
     public function __construct(string $name = null)
     {
-        $this
-            ->setName($name)
-            ->setTemplate()
-            ->setRoot()
-            ->setPaths()
-            ->init();
+        $this->setName($name);
+        $this->setTemplate();
+        $this->setRoot();
+        $this->setPaths();
+        $this->init();
     }
 
     /**
@@ -157,7 +156,8 @@ class FileDriver
     
     /**
      * Gera o caminho de a
-     *
+     * 
+     * @TODO Verificar como corrigir generatePath. Ocorrencia
      * @param string $configKey
      * @return string
      */

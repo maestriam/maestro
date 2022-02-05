@@ -135,7 +135,9 @@ class Module implements ModuleInterface
      */
     public function assetsPath() : string
     {
-        return $this->drive->assetsPath();
+        $assets = $this->drive->assetsPath();
+
+        return base_path($assets);
     }
 
     /**
@@ -192,6 +194,12 @@ class Module implements ModuleInterface
         return $this;
     }
 
+    /**
+     * Faz uma cópia dos diretórios assets (js/css/imgs) do módulo
+     * para dentro do diretório "public".  
+     *
+     * @return bool
+     */
     public function publishAssets() : bool
     {
         $from = $this->assetsPath();
@@ -202,7 +210,9 @@ class Module implements ModuleInterface
 
         File::copyDirectory($from, $to);
 
-        return (is_dir($to)) ? true : false;
+        $ret = (is_dir($to)) ? true : false;
+
+        return $ret;
     }
     
     /**
