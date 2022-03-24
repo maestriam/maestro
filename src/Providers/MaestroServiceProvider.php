@@ -26,11 +26,10 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
     public function boot()
     {
         parent::boot();
-
-        $this
-            ->registerConsts()
-            ->registerCommands()
-            ->registerFacade();    
+        $this->registerConsts();
+        $this->registerNamespaces();
+        $this->registerCommands();
+        $this->registerFacade();    
     }
 
     /**
@@ -40,7 +39,10 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
      */
     public function register()
     {
-        parent::register();
+        $this->registerServices();
+        $this->setupStubPath();
+        $this->registerProviders();
+        $this->registerNamespaces();
         $this->app->register(RegisterConfigServiceProvider::class);
     }
 
@@ -49,11 +51,12 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
      *
      * @return void
      */
-    protected function registerNamespaces()
+    protected function registerNamespaces() : self
     {
         $config = __DIR__ . '/../Config/modules.php';
-
         $this->mergeConfigFrom($config, 'modules');
+
+        return $this;
     }
 
     /**
@@ -97,9 +100,9 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
     /**
      * Registra as constantes utilizadas no pacote
      *
-     * @return void
+     * @return MaestroServiceProvider
      */
-    private function registerConsts() : self
+    private function registerConsts() : MaestroServiceProvider
     {        
         if (! defined('DS')) {
             define('DS', DIRECTORY_SEPARATOR);
