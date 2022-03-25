@@ -4,6 +4,10 @@ All Notable changes to `maestriam/maestro` will be documented in this file.
 
 ## Next
 
+## 1.3.1
+- Bugfix to publish modules
+- Bugfix dependencies
+
 ## 1.2.2 - 2021-12
 
 ### Fixed
