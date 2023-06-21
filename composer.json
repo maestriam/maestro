@@ -5,7 +5,9 @@
     "license": "MIT",
     "require": {
         "maestriam/filesystem": "^1.0.0",
-        "nwidart/laravel-modules": "^8.2"
+        "nwidart/laravel-modules": "^8.2",
+	"maestro-module/accounts": "^0.0.1"
+	"maestro-module/users": "^0.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
