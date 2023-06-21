@@ -7,8 +7,9 @@
         "maestriam/filesystem": "^1.0.0",
         "nwidart/laravel-modules": "^8.2",
         "maestro-module/admin": "^0.0.1",
-	    "maestro-module/accounts": "^0.0.1",
-	    "maestro-module/users": "^0.0.1"
+        "maestro-module/accounts": "^0.0.1",
+        "maestro-module/users": "^0.0.1",
+        "maestriam/stylus": "^0.0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
