@@ -4,7 +4,7 @@
     "type": "package",
     "license": "MIT",
     "require": {
-        "maestriam/filesystem": "dev-master",
+        "maestriam/filesystem": "^1.0.0",
         "nwidart/laravel-modules": "^8.2"
     },
     "require-dev": {
@@ -33,11 +33,5 @@
             "Maestriam\\Maestro\\Providers\\MaestroServiceProvider"
           ]
         }
-    },
-    "repositories": [
-        {
-          "type": "path",
-          "url": "../filesystem"
-        }
-    ]
+    }
 }
