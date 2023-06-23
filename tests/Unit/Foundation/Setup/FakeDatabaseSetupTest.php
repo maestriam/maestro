@@ -7,7 +7,7 @@ use Maestriam\Maestro\Foundation\Setup\FakeDatabaseSetup;
 
 class FakeDatabaseSetupTest extends TestCase
 {
-    public function testAutoloadEditor()
+    public function testFakeDatabaseSetup()
     {
         $database = new FakeDatabaseSetup();
         $database->setup();
