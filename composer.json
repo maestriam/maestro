@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "maestriam/filesystem": "^1.0.0",
+        "maestriam/installers": "^0.0.1",
         "nwidart/laravel-modules": "^8.2"
     },
     "require-dev": {
