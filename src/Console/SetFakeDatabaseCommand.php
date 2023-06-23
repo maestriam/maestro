@@ -21,6 +21,8 @@ class SetFakeDatabaseCommand extends Command
      */
     protected $description = 'Set Maestro modules autoload into composer.json.';
 
+    private $database;
+
     /**
      * Create a new command instance.
      *
@@ -28,7 +30,13 @@ class SetFakeDatabaseCommand extends Command
      */
     public function __construct()
     {
+        $this->init();
         parent::__construct();
+    }
+
+    public function init()
+    {
+        $this->database = new FakeDatabaseSetup();
     }
 
     /**
@@ -38,9 +46,7 @@ class SetFakeDatabaseCommand extends Command
      */
     public function handle()
     {
-        $database = new FakeDatabaseSetup();
-
-        $database->setup();
+        $this->database->setup();
 
         return $this->info('Database file created');
     }

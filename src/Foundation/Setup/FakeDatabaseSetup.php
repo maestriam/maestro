@@ -6,11 +6,28 @@ class FakeDatabaseSetup
 {
     private string $database = 'database.sqlite';
 
-    private string $env = '.env';
+    private EnvSetup $env;
+
+    public function __construct()
+    {
+        $this->env = new EnvSetup();
+    }
 
     public function setup()
     {
-        $this->touchDatabase();        
+        $this->touchDatabase()->configEnv();        
+    }
+
+    /**
+     * Define as configurações do banco de dados no arquivo .env
+     *
+     * @return self
+     */
+    private function configEnv() : self
+    {
+        $this->env->setup();
+
+        return $this;
     }
 
     /**
