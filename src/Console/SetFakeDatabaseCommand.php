@@ -21,7 +21,7 @@ class SetFakeDatabaseCommand extends Command
      */
     protected $description = 'Set Maestro modules autoload into composer.json.';
 
-    private $database;
+    private FakeDatabaseSetup $database;
 
     /**
      * Create a new command instance.

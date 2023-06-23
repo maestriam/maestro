@@ -42,6 +42,6 @@ class StartConfigurationCommand extends Command
     public function handle()
     {
         Artisan::call('maestro:set-autoload');
+        Artisan::call('maestro:fake-database');
     }
-
 }
