@@ -3,16 +3,16 @@
 namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
-use Maestriam\Maestro\Foundation\Setup\AutoloadSetup;
+use Maestriam\Maestro\Foundation\Setup\FakeDatabaseSetup;
 
-class SetAutoloadCommand extends Command
+class SetFakeDatabaseCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:set-autoload';
+    protected $signature = 'maestro:fake-database';
 
     /**
      * The console command description.
@@ -38,10 +38,10 @@ class SetAutoloadCommand extends Command
      */
     public function handle()
     {
-        $autoload = new AutoloadSetup();
+        $database = new FakeDatabaseSetup();
 
-        $autoload->setup();
+        $database->setup();
 
-        return $this->info('Autoload defined in composer.json');
+        return $this->info('Database file created');
     }
 }

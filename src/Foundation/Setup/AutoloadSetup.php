@@ -1,10 +1,10 @@
 <?php
 
-namespace Maestriam\Maestro\Foundation\Composer;
+namespace Maestriam\Maestro\Foundation\Setup;
 
-class RootComposerFile 
+class AutoloadSetup
 {
-    public string $file;
+    private string $file;
 
     public function __construct()
     {
@@ -17,7 +17,7 @@ class RootComposerFile
      *
      * @return void
      */
-    public function setAutoload()
+    public function setup()
     {
         $composer = $this->decode();
         $autoload = $composer->autoload;

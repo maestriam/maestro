@@ -16,6 +16,7 @@ use Maestriam\Maestro\Console\CreateSeedCommand;
 use Maestriam\Maestro\Console\SeedCommand;
 use Maestriam\Maestro\Console\PublishModuleCommand;
 use Maestriam\Maestro\Console\SetAutoloadCommand;
+use Maestriam\Maestro\Console\SetFakeDatabaseCommand;
 use Maestriam\Maestro\Console\StartConfigurationCommand;
 
 class MaestroServiceProvider extends LaravelModulesServiceProvider
@@ -95,6 +96,7 @@ class MaestroServiceProvider extends LaravelModulesServiceProvider
             SeedCommand::class,
             PublishModuleCommand::class,
             SetAutoloadCommand::class,
+            SetFakeDatabaseCommand::class,
             StartConfigurationCommand::class
         ]);
 
