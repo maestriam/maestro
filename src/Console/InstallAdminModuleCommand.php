@@ -40,7 +40,8 @@ class InstallAdminModuleCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('composer require maestro-module/admin');
+        exec('composer require maestro-module/admin');
+        Artisan::call('admin:init')
 
         $this->info('Service provider created.');
     }
