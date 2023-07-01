@@ -3,24 +3,25 @@
 namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CreateModuleCommand extends Command
+class InstallAdminModuleCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:module {name}';
+    protected $signature = 'maestro:admin';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new module.';
+    protected $description = 'Install admin module for a Laravel application.';
 
     /**
      * Create a new command instance.
@@ -39,11 +40,9 @@ class CreateModuleCommand extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        Artisan::call('composer require maestro-module/admin');
 
-        Maestro::module($name)->create()->active();
-
-        $this->info('Module created.');
+        $this->info('Service provider created.');
     }
 
     /**
@@ -53,9 +52,7 @@ class CreateModuleCommand extends Command
      */
     protected function getArguments()
     {
-        return [
-            ['name',   InputArgument::REQUIRED, 'Module name.'],
-        ];
+        return [];
     }
 
     /**
@@ -65,8 +62,6 @@ class CreateModuleCommand extends Command
      */
     protected function getOptions()
     {
-        return [
-            // ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
-        ];
+        return [ ];
     }
 }

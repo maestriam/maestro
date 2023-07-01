@@ -4,7 +4,6 @@ namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
 use Maestriam\Maestro\Support\Maestro;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
 class CreateMigrationCommand extends Command

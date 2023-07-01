@@ -4,9 +4,6 @@ namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Maestriam\Maestro\Foundation\Composer\RootComposerFile;
-use Maestriam\Maestro\Support\Maestro;
-use Symfony\Component\Console\Input\InputArgument;
 
 class StartConfigurationCommand extends Command
 {
@@ -43,5 +40,7 @@ class StartConfigurationCommand extends Command
     {
         Artisan::call('maestro:set-autoload');
         Artisan::call('maestro:fake-database');
+
+        $this->info('Configurated with successful.');
     }
 }
