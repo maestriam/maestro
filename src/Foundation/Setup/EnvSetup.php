@@ -18,5 +18,6 @@ class EnvSetup implements SetupInterface
     {
         $this->handler->set('DB_CONNECTION', 'sqlite');
         $this->handler->remove('DB_DATABASE');
+        $this->handler->set('APP_URL', 'http://localhost:8000');
     }
 }
