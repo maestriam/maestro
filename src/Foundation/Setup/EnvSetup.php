@@ -16,8 +16,8 @@ class EnvSetup implements SetupInterface
 
     public function setup()
     {
-        $this->handler->set('DB_CONNECTION', 'sqlite');
         $this->handler->remove('DB_DATABASE');
+        $this->handler->set('DB_CONNECTION', 'sqlite');
         $this->handler->set('APP_URL', 'http://localhost:8000');
     }
 }

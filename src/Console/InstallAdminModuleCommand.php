@@ -4,8 +4,6 @@ namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Maestriam\Maestro\Support\Maestro;
-use Symfony\Component\Console\Input\InputArgument;
 
 class InstallAdminModuleCommand extends Command
 {
@@ -40,10 +38,11 @@ class InstallAdminModuleCommand extends Command
      */
     public function handle()
     {
-        exec('composer require maestro-module/admin');
-        Artisan::call('admin:init');
+        Artisan::call('maestro:init');
 
-        $this->info('Service provider created.');
+        exec('composer require maestro-module/admin');
+
+        $this->info('Admin module for Maestro installed. Execute admin:init to configure module.');
     }
 
     /**
