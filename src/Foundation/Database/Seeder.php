@@ -36,7 +36,7 @@ class Seeder
         return $namespace . $class;
     }
 
-    public function seed() : bool
+    public function seed() : string|null
     {
         try {
 
@@ -48,11 +48,10 @@ class Seeder
 
             Artisan::call('db:seed', ['--class' => $seeder]);
             
-            return true;
+            return null;
             
         } catch (\Exception $e) {
-
-            return false;
+            return $e->getMessage();
         }
     }
 }

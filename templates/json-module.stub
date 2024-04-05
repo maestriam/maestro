@@ -1,6 +1,7 @@
 {
     "name": "{{name}}",
     "alias": "{{alias}}",
+    "visible": true,
     "description": "",
     "keywords": [],
     "priority": 0,

@@ -3,24 +3,24 @@
 namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
-use Maestriam\Maestro\Support\Maestro;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CreateModuleCommand extends Command
+class EnableModuleCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'maestro:module {name}';
+    protected $signature = 'maestro:enable {module}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new module.';
+    protected $description = 'Enable module for use.';
 
     /**
      * Create a new command instance.
@@ -39,11 +39,13 @@ class CreateModuleCommand extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $name = $this->argument('module');
 
-        Maestro::module($name)->create()->active();
+        $cmd = "module:enable $name";
+                
+        Artisan::call($cmd);
 
-        $this->info("Module [$name] created.");
+        $this->info("Module [$name] is enabled.");
     }
 
     /**
@@ -54,19 +56,7 @@ class CreateModuleCommand extends Command
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'Module name.'],
-        ];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            // ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+            ['module', InputArgument::REQUIRED, 'Module name.'],
         ];
     }
 }

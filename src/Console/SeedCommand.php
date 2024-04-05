@@ -50,13 +50,13 @@ class SeedCommand extends Command
     {
         $module = Maestro::module($name)->findOrFail();
 
-        $response = $module->database()->seed();    
+        $response = $module->database()->seed();
         
-        if ($response) {
+        if ($response == null) {
             return $this->info('Module seeded.');
         }
 
-        return $this->error('Error in seeding.');
+        return $this->error("Error in seeding: $response");
     }
 
     /**

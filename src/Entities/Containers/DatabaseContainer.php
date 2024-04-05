@@ -124,8 +124,7 @@ class DatabaseContainer extends BaseContainer
             
             return true;
         
-        } catch (\Exception $e) {
-            
+        } catch (\Exception $e) {            
             return false;
         }        
     }
@@ -135,7 +134,7 @@ class DatabaseContainer extends BaseContainer
      *
      * @return boolean
      */
-    public function seed() : bool
+    public function seed() : string|null
     {
         $module = $this->module();
 

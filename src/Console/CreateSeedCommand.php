@@ -50,11 +50,8 @@ class CreateSeedCommand extends Command
             $this->info('Seeder created.');
 
         } catch (\Exception $e) {
-
             $this->error('Error to create seeder');
         }
-        
-
     }
 
     /**

@@ -19,7 +19,7 @@ class InstallAdminModuleCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install admin module for a Laravel application.';
+    protected $description = 'Install Admin module for a Laravel application.';
 
     /**
      * Create a new command instance.
@@ -42,7 +42,7 @@ class InstallAdminModuleCommand extends Command
 
         exec('composer require maestro-module/admin');
 
-        $this->info('Admin module for Maestro installed. Execute admin:init to configure module.');
+        $this->info('Admin module for Maestro installed. Execute php artisan admin:setup to configure module.');
     }
 
     /**
