@@ -23,7 +23,7 @@ class BlankSeed extends Source
      * Define o nome da classe e do arquivo do seed. 
      *
      * @param string $name
-     * @return Controller
+     * @return BlankSeed
      */
     public function setClassName(string $name) : BlankSeed
     {

@@ -94,7 +94,7 @@ class DatabaseContainer extends BaseContainer
      *
      * @return bool
      */
-    public function migrate() : bool
+    public function migrate() : null|string
     {
         try 
         {
@@ -102,10 +102,10 @@ class DatabaseContainer extends BaseContainer
 
             Artisan::call('migrate', ['--path' => $path]);
             
-            return true;
+            return null;
         
         } catch (\Exception $e) {
-            return false;
+            return $e->getMessage();
         }
     }
 
@@ -114,18 +114,22 @@ class DatabaseContainer extends BaseContainer
      *
      * @return boolean
      */
-    public function rollback() : bool
+    public function rollback() : bool|string
     {
         try 
         {
             $path = $this->module()->migrationPath(); 
-
-            Artisan::call('migrate:rollback', ['--path' => $path]);
             
+            $name = $this->module()->name();
+
+            $signature = "module:migrate-rollback {$name}";
+
+            $ret = Artisan::call($signature);
+
             return true;
         
         } catch (\Exception $e) {            
-            return false;
+            return $e->getMessage();
         }        
     }
 

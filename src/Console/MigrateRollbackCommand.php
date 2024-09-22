@@ -3,6 +3,7 @@
 namespace Maestriam\Maestro\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Maestriam\Maestro\Support\Maestro;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -50,13 +51,14 @@ class MigrateRollbackCommand extends Command
     {
         $module = Maestro::module($name)->findOrFail();
 
-        $response = $module->database()->rollback();
-    
-        if ($response) {
+        //$response = $module->database()->rollback();
+        $response = Artisan::call("module:migrate-rollback {$name}");
+            
+        if ($response === true) {
             return $this->info('Module rollback.');
         }
 
-        return $this->error('Error in rollback.');
+        return $this->error("Error in rollback: {$response}");
     }
 
     /**

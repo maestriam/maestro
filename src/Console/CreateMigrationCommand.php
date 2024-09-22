@@ -13,7 +13,7 @@ class CreateMigrationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'maestro:migration {module} {name}';
+    protected $signature = 'maestro:migration {name} {module}';
 
     /**
      * The console command description.

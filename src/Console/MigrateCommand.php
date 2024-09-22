@@ -52,11 +52,11 @@ class MigrateCommand extends Command
 
         $response = $module->database()->migrate();
     
-        if ($response) {
+        if ($response == null) {
             return $this->info('Module migrated.');
         }
 
-        return $this->error('Error in migration.');
+        return $this->error("Error in migration: {$response}");
     }
 
     /**

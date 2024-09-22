@@ -7,6 +7,8 @@ use Maestriam\Maestro\Entities\Source;
 
 class BlankModel extends Source
 {
+    private string $className;
+
     public function __construct(Module $module)
     {
         $this->init($module, 'model-blank');
@@ -35,7 +37,7 @@ class BlankModel extends Source
      * Define o nome do model
      *
      * @param string $name
-     * @return void
+     * @return BlankModel
      */
     public function setClassName(string $name) : BlankModel
     {
