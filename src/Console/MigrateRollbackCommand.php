@@ -54,7 +54,7 @@ class MigrateRollbackCommand extends Command
         //$response = $module->database()->rollback();
         $response = Artisan::call("module:migrate-rollback {$name}");
             
-        if ($response === true) {
+        if ($response === 0) {
             return $this->info('Module rollback.');
         }
 
