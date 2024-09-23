@@ -4,8 +4,8 @@
     "type": "package",
     "license": "MIT",
     "require": {
-        "maestriam/filesystem": "dev-master",
-        "maestriam/installers": "dev-master",
+        "maestriam/filesystem": ">=0.0.1",
+        "maestriam/installers": ">=0.0.1",
         "nwidart/laravel-modules": ">=8.2"
     },
     "require-dev": {
